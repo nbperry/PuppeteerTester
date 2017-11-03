@@ -1,0 +1,22 @@
+{
+  "name": "PuppeteerTestingTool",
+  "version": "0.0.1",
+  "description": "Tool used for generating snapshots of a website as a part of CI/CD process",
+  "main": "index.ts",
+  "author": "Nathan Brooker Perry",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "puppeteer": "^0.12.0",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.47",
+    "@types/puppeteer": "^0.12.1",
+    "typedoc": "^0.9.0"
+  }
+}
