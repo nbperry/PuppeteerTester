@@ -1,0 +1,18 @@
+# Scratch
+
+## Breakpoints
+
+A small set of default breakpoints
+
+* 2560x1600
+* 2560x1440
+* 1920x1200
+* 1920x1080
+* 1680x1050
+* 1440x900
+* 1366x768
+* 1024x768
+* 480x800
+* 480x640
+* 480x320
+* 320x240
