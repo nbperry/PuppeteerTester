@@ -13,7 +13,7 @@ declare interface BrowseNode {
   url: string;
 
   /**
-     * 
+     *
      */
   breakpoints?: Breakpoint[];
 }
@@ -29,7 +29,7 @@ declare interface Breakpoint {
   width: number;
   /**
      * Suffix used for the generated snapshot
-     * 
+     *
      * TODO: If not provided we should default this to {width}x{height}
      */
   name?: string;
