@@ -4,9 +4,11 @@
         "noImplicitAny": true,
         "strictNullChecks": true,
         "lib": [
-            "es2015"
+            "es2015",
+            "dom"
         ],
-        "noUnusedLocals": true
+        "noUnusedLocals": true,
+        "outDir": "dist"
     },
     "include": [
         "src/**/*"
