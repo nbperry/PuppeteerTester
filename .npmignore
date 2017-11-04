@@ -1,0 +1,10 @@
+snapshots
+src
+.editorconfig
+.prettierrc
+nodemon.json
+ptt.config.ts
+SCRATCH.md
+tsconfig.json
+tslint.json
+yarn.lock

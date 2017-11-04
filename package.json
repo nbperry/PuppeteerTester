@@ -1,16 +1,17 @@
 {
-  "name": "PuppeteerTestingTool",
+  "name": "puppeteer-testing-tool",
   "version": "0.0.1",
   "description": "Tool used for generating snapshots of a website as a part of CI/CD process",
-  "main": "dist/bin/pt.js",
+  "main": "dist/bin/ptt.js",
   "author": "Nathan Brooker Perry",
   "license": "MIT",
   "private": true,
   "scripts": {
     "start": "concurrently \"yarn run watch\" \"yarn run dev\"",
+    "cli": "node dist/bin/ptt.js snapshot -c ptt.config.ts",
     "build": "tsc",
     "watch": "tsc --watch",
-    "dev": "nodemon",
+    "dev": "wait-on dist/run-snapshot.js && nodemon dist/run-snapshot.js",
     "pretty": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
     "test": "jest",
@@ -37,8 +38,12 @@
   },
   "dependencies": {
     "@types/commander": "^2.11.0",
+    "@types/mkdirp": "^0.5.1",
     "commander": "^2.11.0",
-    "puppeteer": "^0.12.0"
+    "interpret": "^1.0.4",
+    "mkdirp": "^0.5.1",
+    "puppeteer": "^0.12.0",
+    "wait-on": "^2.0.2"
   },
   "devDependencies": {
     "@types/jest": "^21.1.5",
