@@ -3,7 +3,15 @@
   "version": "0.0.1",
   "description": "Tool used for generating snapshots of a website as a part of CI/CD process",
   "main": "dist/bin/ptt.js",
-  "author": "Nathan Brooker Perry",
+  "author": {
+    "name": "Nathan Brooker Perry"
+  },
+  "contributors": [
+    {
+      "name": "Justin Firth",
+      "email": "jmfirth@gmail.com"
+    }
+  ],
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -37,16 +45,15 @@
     ]
   },
   "dependencies": {
-    "@types/commander": "^2.11.0",
-    "@types/mkdirp": "^0.5.1",
     "commander": "^2.11.0",
     "interpret": "^1.0.4",
     "mkdirp": "^0.5.1",
-    "puppeteer": "^0.12.0",
-    "wait-on": "^2.0.2"
+    "puppeteer": "^0.12.0"
   },
   "devDependencies": {
+    "@types/commander": "^2.11.0",
     "@types/jest": "^21.1.5",
+    "@types/mkdirp": "^0.5.1",
     "@types/node": "^8.0.47",
     "@types/puppeteer": "^0.12.1",
     "concurrently": "^3.5.0",
@@ -60,6 +67,7 @@
     "tslint": "^5.8.0",
     "tslint-config-prettier": "^1.6.0",
     "typedoc": "^0.9.0",
-    "typescript": "^2.6.1"
+    "typescript": "^2.6.1",
+    "wait-on": "^2.0.2"
   }
 }
