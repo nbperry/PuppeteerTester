@@ -45,6 +45,7 @@
     ]
   },
   "dependencies": {
+    "chalk": "^2.3.0",
     "commander": "^2.11.0",
     "interpret": "^1.0.4",
     "mkdirp": "^0.5.1",
