@@ -1,7 +1,5 @@
 // Internal Type Definitions
 
-//TODO: Need to likely build typeguards for these for ensure runtime compliance with the configuration
-
 declare namespace PT {
   /**
    * A viewport configuration

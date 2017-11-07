@@ -3,6 +3,8 @@ import * as path from 'path';
 import * as puppeteer from 'puppeteer';
 import { isArray } from 'util';
 
+import * as message from './message';
+
 /*
     TBD:
     jpg, png, or PDF not really sure or fully customizable?
@@ -15,6 +17,7 @@ import { isArray } from 'util';
  * @param url Url to navigate to for taking a screenshot
  * @param name the name of the image to save
  * @param breakpoint Object containing the resolutions for the browser viewport
+ * @param outdir Output directory
  */
 export async function writeSnapshot(
   url: string,
@@ -25,19 +28,22 @@ export async function writeSnapshot(
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
+  // Navigate to the url and wait for the load event is fired
   await page.goto(url, { waitUntil: 'load' });
 
+  // Adjust the viewport to the snapshot's height & width
   await page.setViewport({
     height: breakpoint.height,
     width: breakpoint.width
   });
 
-  // TODO: use breakpoint.name with a default
-  // TODO: make the output directory configurable
+  // Create the filepath for the generated snapshot
   const filepath = path.join(
     outdir,
     name,
-    `${name}-${breakpoint.width}x${breakpoint.height}.jpg`
+    breakpoint.name
+      ? `${breakpoint.name}-${breakpoint.width}x${breakpoint.height}.jpg`
+      : `${breakpoint.width}x${breakpoint.height}.jpg`
   );
 
   await page.screenshot({ path: filepath, fullPage: true });
@@ -48,7 +54,7 @@ export async function writeSnapshot(
 /**
  * Run using a configuration
  *
- * @param configuration
+ * @param configuration configuration for executing snapshot functionality
  */
 export async function runConfiguration(configuration: PT.Configuration) {
   runSnapshot(configuration.snapshot, configuration.output.path);
@@ -57,7 +63,8 @@ export async function runConfiguration(configuration: PT.Configuration) {
 /**
  * Run using a snapshot and outdir
  *
- * @param entries
+ * @param entryOrEntries A single snapshot or multiple snapshot entires
+ * @param outdir the output directory for all snapshot entries
  */
 export async function runSnapshot(
   entryOrEntries: PT.Snapshot | PT.Snapshot[],
@@ -73,11 +80,14 @@ export async function runSnapshot(
 /**
  * Execute a snapshot entry
  *
- * @param entry
+ * @param entry A single snapshot entry
+ * @param outdir the output directory for all snapshots for the given entry
  */
 export async function executeSnapshot(entry: PT.Snapshot, outdir: string) {
-  // TODO: Add default breakpoints to implement
   if (!entry.breakpoints) {
+    message.error(
+      `No breakpoints were set for the entry ${entry.outputName} - ${entry.url}`
+    );
     throw new Error('No default breakpoint set');
   }
 
@@ -85,9 +95,10 @@ export async function executeSnapshot(entry: PT.Snapshot, outdir: string) {
   try {
     await new Promise(resolve => mkdirp(targetDir, resolve));
   } catch (e) {
-    // directory exists
+    // directory already exists
   }
 
+  // generate the snapshot for each breakpoint
   entry.breakpoints.forEach(element =>
     writeSnapshot(entry.url, entry.outputName, element, outdir)
   );

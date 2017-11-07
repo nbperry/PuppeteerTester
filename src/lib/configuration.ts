@@ -5,29 +5,27 @@ import * as message from './message';
 /**
  * Loads a configuration
  *
- * @param configPath
+ * @param configFile
  */
 export function loadConfiguration(
-  configPath?: string
+  configFile?: string
 ): PT.Configuration | undefined {
   try {
-    if (configPath) {
-      const compiler = interpret.extensions[path.extname(configPath)];
-
+    // If the configuration file exists
+    if (configFile) {
+      const compiler = interpret.extensions[path.extname(configFile)];
       try {
         registerCompiler(compiler);
       } catch (e) {
         message.error(e);
       }
 
-      message.log(`Config filepath: ${path.join(process.cwd(), configPath)}`);
+      // Log the configuration file path
+      message.log(`Config filepath: ${path.join(process.cwd(), configFile)}`);
 
-      const configFile = require(path.join(process.cwd(), configPath));
-
-      // test for a default export
-      return configFile.default
-        ? configFile.default as PT.Configuration
-        : configFile;
+      const config = require(path.join(process.cwd(), configFile));
+      // return the configuration object
+      return config.default ? config.default as PT.Configuration : config;
     }
   } catch (e) {
     message.error(e);
