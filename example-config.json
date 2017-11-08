@@ -1,0 +1,18 @@
+{
+    "output": {
+        "diffPath": "snapshots/diff",
+        "format": "jpg",
+        "path": "snapshots/output"
+    },
+    "snapshot": [
+        {
+            "breakpoints": [
+              { "width": 1920, "height": 1080, "name": "BIG_SCREEN" },
+              { "width": 1366, "height": 768 },
+              { "width": 480, "height": 640, "name": "Smaller_screen" }
+            ],
+            "outputName": "hackernews",
+            "url": "https://news.ycombinator.com/"
+        }        
+    ]
+}

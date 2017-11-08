@@ -34,15 +34,38 @@ function createMessage(type: MessageType, ...args: any[]) {
 
 const format = (label: string, message: string) => `${label} ${message}`;
 
-export function output(type: MessageType, ...args: any[]) {
+function output(type: MessageType, ...args: any[]) {
   // tslint:disable-next-line no-console
   console[type](format(createLabel(type), createMessage(type, args)));
 }
 
+// TODO: Should this only be outputed to console when the library is being used when a debug flag is enabled?
+
+/**
+ * Log should be used for internal library debuging statements
+ *
+ * @param args
+ */
 export const log = (...args: any[]) => output('log', ...args);
 
+/**
+ * Info should be used for providing information to the library end user
+ *
+ * @param args
+ */
 export const info = (...args: any[]) => output('info', ...args);
 
+/**
+ * Warn should be used for warning the library user of potential issues
+ *
+ * @param args
+ */
 export const warn = (...args: any[]) => output('warn', ...args);
 
+/**
+ *
+ * Error should be used for providing information to the library user of errors that have occured
+ *
+ * @param args
+ */
 export const error = (...args: any[]) => output('error', ...args);

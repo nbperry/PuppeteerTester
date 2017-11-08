@@ -1,28 +1,34 @@
 import * as interpret from 'interpret';
 import * as path from 'path';
-
-const DEFAULT_FILE_NAME = 'ptt.config.js';
+import * as message from './message';
 
 /**
  * Loads a configuration
  *
- * @param configPath
+ * @param configFile
  */
 export function loadConfiguration(
-  configPath?: string
+  configFile?: string
 ): PT.Configuration | undefined {
   try {
-    if (configPath) {
-      const compiler = interpret.extensions[path.extname(configPath)];
+    // If the configuration file exists
+    if (configFile) {
+      const compiler = interpret.extensions[path.extname(configFile)];
       try {
         registerCompiler(compiler);
       } catch (e) {
-        //
+        message.error(e);
       }
+
+      // Log the configuration file path
+      message.log(`Config filepath: ${path.join(process.cwd(), configFile)}`);
+
+      const config = require(path.join(process.cwd(), configFile));
+      // return the configuration object
+      return config.default ? config.default as PT.Configuration : config;
     }
-    return require(path.join(process.cwd(), configPath || DEFAULT_FILE_NAME))
-      .default as PT.Configuration;
   } catch (e) {
+    message.error(e);
     return undefined;
   }
 }
@@ -45,7 +51,7 @@ function registerCompiler(moduleDescriptor?: interpret.Descriptor) {
           registerCompiler(descriptor);
           break;
         } catch (e) {
-          // do nothing
+          message.error(e);
         }
       }
     }

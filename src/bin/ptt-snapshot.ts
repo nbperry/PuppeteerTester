@@ -36,6 +36,7 @@ function run() {
       return message.error(`Configuration at ${config} malformed.`);
     }
     message.log('Running with a valid configuration.');
+    message.log(configuration);
     runConfiguration(configuration);
   } else {
     const snapshot: PT.Snapshot = {
