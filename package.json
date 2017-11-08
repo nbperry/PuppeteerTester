@@ -4,7 +4,8 @@
   "description": "Tool used for generating snapshots of a website as a part of CI/CD process",
   "main": "dist/bin/ptt.js",
   "author": {
-    "name": "Nathan Brooker Perry"
+    "name": "Nathan Brooker Perry",
+    "email": "nbp8557@rit.edu"
   },
   "contributors": [
     {
@@ -31,17 +32,11 @@
       "git add"
     ]
   },
-  "jest": {
-    "transform": {
-      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-    },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+  "jest": {    
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
     "moduleFileExtensions": [
       "ts",
-      "tsx",
-      "js",
-      "jsx",
-      "json"
+      "js"
     ]
   },
   "dependencies": {
