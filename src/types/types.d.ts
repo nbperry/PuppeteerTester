@@ -24,7 +24,7 @@ declare namespace PT {
   /**
    * Supported output formats
    */
-  type OutputFormat = 'jpg';
+  type OutputFormat = 'png' | 'jpeg';
 
   /**
    * An output configuration

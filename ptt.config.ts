@@ -3,7 +3,7 @@ import * as path from 'path';
 const configuration = {
   output: {
     diffPath: path.join(process.cwd(), 'snapshots', 'diff'),
-    format: 'jpg',
+    format: 'png',
     path: path.join(process.cwd(), 'snapshots', 'output')
   },
   snapshot: [

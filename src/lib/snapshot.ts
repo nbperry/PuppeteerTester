@@ -2,8 +2,23 @@ import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as puppeteer from 'puppeteer';
 import { isArray } from 'util';
-
 import * as message from './message';
+
+const DEFAULT_FORMAT: PT.OutputFormat = 'png';
+
+/**
+ * Convert output format to output extension.
+ *
+ * @param format
+ */
+function formatToExtension(format: PT.OutputFormat) {
+  switch (format) {
+    case 'jpeg':
+      return 'jpg';
+    default:
+      return format;
+  }
+}
 
 /*
     TBD:
@@ -23,8 +38,10 @@ export async function writeSnapshot(
   url: string,
   name: string,
   breakpoint: PT.Breakpoint,
-  outdir: string
+  outdir: string,
+  format: PT.OutputFormat = DEFAULT_FORMAT
 ) {
+  const extension = formatToExtension(format);
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
 
@@ -42,11 +59,15 @@ export async function writeSnapshot(
     outdir,
     name,
     breakpoint.name
-      ? `${breakpoint.name}-${breakpoint.width}x${breakpoint.height}.jpg`
-      : `${breakpoint.width}x${breakpoint.height}.jpg`
+      ? `${breakpoint.name}-${breakpoint.width}x${breakpoint.height}.${extension}`
+      : `${breakpoint.width}x${breakpoint.height}.${extension}`
   );
 
-  await page.screenshot({ path: filepath, fullPage: true });
+  await page.screenshot({
+    fullPage: true,
+    path: filepath,
+    type: format
+  });
 
   await browser.close();
 }
@@ -57,7 +78,11 @@ export async function writeSnapshot(
  * @param configuration configuration for executing snapshot functionality
  */
 export async function runConfiguration(configuration: PT.Configuration) {
-  runSnapshot(configuration.snapshot, configuration.output.path);
+  runSnapshot(
+    configuration.snapshot,
+    configuration.output.path,
+    configuration.output.format
+  );
 }
 
 /**
@@ -68,12 +93,13 @@ export async function runConfiguration(configuration: PT.Configuration) {
  */
 export async function runSnapshot(
   entryOrEntries: PT.Snapshot | PT.Snapshot[],
-  outdir: string = ''
+  outdir: string = '',
+  format?: PT.OutputFormat
 ) {
   if (isArray(entryOrEntries)) {
-    entryOrEntries.forEach(entry => executeSnapshot(entry, outdir));
+    entryOrEntries.forEach(entry => executeSnapshot(entry, outdir, format));
   } else {
-    executeSnapshot(entryOrEntries, outdir);
+    executeSnapshot(entryOrEntries, outdir, format);
   }
 }
 
@@ -83,7 +109,11 @@ export async function runSnapshot(
  * @param entry A single snapshot entry
  * @param outdir the output directory for all snapshots for the given entry
  */
-export async function executeSnapshot(entry: PT.Snapshot, outdir: string) {
+export async function executeSnapshot(
+  entry: PT.Snapshot,
+  outdir: string,
+  format?: PT.OutputFormat
+) {
   if (!entry.breakpoints) {
     message.error(
       `No breakpoints were set for the entry ${entry.outputName} - ${entry.url}`
@@ -100,6 +130,6 @@ export async function executeSnapshot(entry: PT.Snapshot, outdir: string) {
 
   // generate the snapshot for each breakpoint
   entry.breakpoints.forEach(element =>
-    writeSnapshot(entry.url, entry.outputName, element, outdir)
+    writeSnapshot(entry.url, entry.outputName, element, outdir, format)
   );
 }

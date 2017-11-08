@@ -16,7 +16,8 @@ export function run() {
   } else if (!guards.isConfiguration(configuration)) {
     throw new Error(`Configuration at ${configPath} malformed.`);
   }
-  snapshot.runSnapshot(configuration.snapshot, configuration.output.path);
+
+  snapshot.runConfiguration(configuration);
 }
 
 run();

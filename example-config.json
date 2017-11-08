@@ -1,7 +1,7 @@
 {
     "output": {
         "diffPath": "snapshots/diff",
-        "format": "jpg",
+        "format": "jpeg",
         "path": "snapshots/output"
     },
     "snapshot": [
@@ -13,6 +13,6 @@
             ],
             "outputName": "hackernews",
             "url": "https://news.ycombinator.com/"
-        }        
+        }
     ]
 }
