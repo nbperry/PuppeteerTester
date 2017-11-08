@@ -3,9 +3,8 @@ import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as puppeteer from 'puppeteer';
 import { isArray } from 'util';
+import { DEFAULT_OUTPUT_FORMAT } from './constants';
 import * as message from './message';
-
-const DEFAULT_FORMAT: PT.OutputFormat = 'png';
 
 /**
  * Convert output format to output extension.
@@ -40,7 +39,7 @@ export async function writeSnapshot(
   name: string,
   breakpoint: PT.Breakpoint,
   outdir: string,
-  format: PT.OutputFormat = DEFAULT_FORMAT
+  format: PT.OutputFormat = DEFAULT_OUTPUT_FORMAT
 ) {
   const extension = formatToExtension(format);
   const browser = await puppeteer.launch({ headless: true });
