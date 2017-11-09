@@ -28,9 +28,7 @@ function run() {
   }
 
   diff(oldFilePath, newFilePath, outFilePath)
-    .then(() =>
-      message.info(`Successfully saved image diff to ${outFilePath}.`)
-    )
+    .then(() => message.info(`Saved image diff to ${outFilePath}.`))
     .catch(e => message.error('Error diffing image:\n', e.message));
 }
 

@@ -120,7 +120,7 @@ export async function executeSnapshot(
     throw new Error('No default breakpoint set');
   }
 
-  const datedir = dateFormat(new Date(), 'YYYYDDMM-HHMMSS');
+  const datedir = dateFormat(new Date(), 'YYYYMMDD-HHMMSS');
   const targetDir = path.join(outdir, entry.outputName, datedir);
 
   try {

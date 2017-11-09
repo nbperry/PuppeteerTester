@@ -1,9 +1,10 @@
 import * as fs from 'fs';
 import * as jpeg from 'jpeg-js';
+import * as mkdirp from 'mkdirp';
 import * as path from 'path';
-// import pixelmatch, { ImageData as PMImageData } from 'pixelmatch';
 import * as pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
+import * as message from '../lib/message';
 
 // const PMImageData = pixelmatch.ImageData;
 
@@ -81,8 +82,6 @@ export async function diff(inPath1: string, inPath2: string, outPath: string) {
     throw new Error('Could not load first input file.');
   } else if (!in2) {
     throw new Error('Could not load second input file.');
-  } else if (in1.width !== in2.width || in1.height !== in2.height) {
-    throw new Error('Image dimensions are not identical.');
   }
 
   const width = in1.width;
@@ -98,4 +97,112 @@ export async function diff(inPath1: string, inPath2: string, outPath: string) {
       .pipe(fs.createWriteStream(outPath))
       .on('parsed', () => resolve());
   });
+}
+
+/**
+ * Get the intersection of two arrays.
+ *
+ * @TODO: Consider moving this to a utiity library or replacing with library in future
+ * @param a
+ * @param b
+ */
+const intersect = (a: any[], b: any[]) =>
+  Array.from(new Set(a)).filter(x => new Set(b).has(x));
+
+/**
+ * Get the last two directory paths
+ *
+ * @returns {[string, string]} tuple containing `[new, old]` directory paths
+ */
+function getLastTwoDirs(dirPath: string): [string, string] | null {
+  const source = path.resolve(dirPath);
+  const sorted = fs
+    .readdirSync(source)
+    .map(i => path.resolve(source, i))
+    .filter(i => fs.lstatSync(i).isDirectory && i.indexOf('.DS_Store') === -1)
+    // @TODO: Potentially sort by date time instead, or optionally?
+    // .sort((a, b) => fs.lstatSync(a).mtime.getTime() >= fs.lstatSync(b).mtime.getTime() ? 1 : -1)
+    .reverse();
+  return sorted.length >= 2 ? [sorted[0], sorted[1]] : null;
+}
+
+/**
+ * Get all of the image paths in a directory.
+ *
+ * @param dirPath
+ */
+function getImages(dirPath: string) {
+  return fs
+    .readdirSync(dirPath)
+    .map(i => path.resolve(dirPath, i))
+    .filter(
+      i =>
+        (fs.lstatSync(i).isFile && path.extname(i) === '.png') ||
+        path.extname(i) === '.jpg'
+    );
+}
+
+/**
+ * Get the name of the last directory on the path.
+ *
+ * @param dirPath
+ */
+const getLastDirName = (dirPath: string) =>
+  path
+    .resolve(dirPath)
+    .split(path.sep)
+    .pop();
+
+/**
+ * Get the file name by removing the extension from the base name
+ *
+ * @param baseName
+ */
+const getFileName = (baseName: string) =>
+  baseName.indexOf('.') > 1
+    ? baseName.substring(0, baseName.lastIndexOf('.'))
+    : baseName;
+
+/**
+ * Get a difference of the last two subdirectories at a directory path.
+ *
+ * @param dirPath
+ */
+export function diffLastTwo(dirPath: string) {
+  const lastTwoDirs = getLastTwoDirs(dirPath);
+  if (lastTwoDirs === null) {
+    return message.error(
+      `Can not diff last two because there are less than two directories at ${dirPath}.`
+    );
+  }
+  const [newDir, oldDir] = lastTwoDirs;
+
+  const sameFiles = intersect(
+    getImages(oldDir).map(file => `${path.basename(file)}`),
+    getImages(newDir).map(file => `${path.basename(file)}`)
+  );
+  if (sameFiles.length === 0) {
+    return message.error(
+      `Directories ${oldDir} and ${newDir} don't contain any of the same files.`
+    );
+  }
+
+  // Coerced - we know these are valid paths
+  const oldSubDirName = getLastDirName(oldDir) as string;
+  const newSubDirName = getLastDirName(newDir) as string;
+  // Create a new directory at the same level as `dirPath` appended with `-diff`.
+  // @TODO: Consider other options for this
+  const outdir = path.join(
+    `${path.resolve(dirPath)}-diff`,
+    `${newSubDirName}-vs-${oldSubDirName}`
+  );
+  mkdirp(outdir, () =>
+    sameFiles.forEach(file => {
+      const baseName = path.basename(file);
+      const oldPath = path.join(oldDir, `${baseName}`);
+      const newPath = path.join(newDir, `${baseName}`);
+      const outPath = path.join(outdir, `${getFileName(baseName)}.png`);
+      diff(oldPath, newPath, outPath);
+    })
+  );
 }
