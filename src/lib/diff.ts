@@ -1,13 +1,16 @@
 import * as fs from 'fs';
 import * as jpeg from 'jpeg-js';
 import * as path from 'path';
-import pixelmatch, { ImageData as PMImageData } from 'pixelmatch';
+// import pixelmatch, { ImageData as PMImageData } from 'pixelmatch';
+import * as pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
+
+// const PMImageData = pixelmatch.ImageData;
 
 /** The image data and dimensions of a loaded image of some type */
 export interface LoadedImage {
   /** Compatible pixelmatch ImageData */
-  data: PMImageData;
+  data: Buffer | Uint8Array | ImageData;
   /** The width of the image */
   width: number;
   /** The height of the image */
@@ -51,9 +54,9 @@ async function loadJPEG(filePath: string): Promise<LoadedImage> {
 async function loadImage(filePath: string) {
   const extension = path.extname(filePath);
   switch (extension) {
-    case 'png':
+    case '.png':
       return loadPNG(filePath);
-    case 'jpg':
+    case '.jpg':
       return loadJPEG(filePath);
     default:
       throw new Error(
