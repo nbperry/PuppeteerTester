@@ -24,7 +24,9 @@
     "pretty": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
     "test": "jest",
-    "precommit": "lint-staged && yarn run lint && yarn test"
+    "precommit": "lint-staged && yarn run lint && yarn test",
+    "docs:build": "typedoc --mode modules --excludeExternals --includeDeclarations --out docs/ src/",
+    "docs:serve": "serve docs/"
   },
   "lint-staged": {
     "*.ts": [
@@ -32,7 +34,7 @@
       "git add"
     ]
   },
-  "jest": {    
+  "jest": {
     "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
     "moduleFileExtensions": [
       "ts",
@@ -64,6 +66,7 @@
     "lint-staged": "^4.3.0",
     "nodemon": "^1.12.1",
     "prettier": "^1.7.4",
+    "serve": "^6.4.1",
     "ts-jest": "^21.1.4",
     "ts-node": "^3.3.0",
     "tslint": "^5.8.0",

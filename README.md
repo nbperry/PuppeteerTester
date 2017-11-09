@@ -27,17 +27,16 @@ npm install {TO BE DETERMINED} -g
 ### Diffing
 
 
+#### Examples
+
+
 ## Development
 
 1. Clone the repository
 
 2. `yarn install`
 
-GO
-
-### Scripts
-
-
+You should be good to go.
 
 ### Dependencies
 
