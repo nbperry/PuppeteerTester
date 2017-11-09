@@ -1,10 +1,10 @@
+import { format as dateFormat } from 'date-fns';
 import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as puppeteer from 'puppeteer';
 import { isArray } from 'util';
+import { DEFAULT_OUTPUT_FORMAT } from './constants';
 import * as message from './message';
-
-const DEFAULT_FORMAT: PT.OutputFormat = 'png';
 
 /**
  * Convert output format to output extension.
@@ -39,7 +39,7 @@ export async function writeSnapshot(
   name: string,
   breakpoint: PT.Breakpoint,
   outdir: string,
-  format: PT.OutputFormat = DEFAULT_FORMAT
+  format: PT.OutputFormat = DEFAULT_OUTPUT_FORMAT
 ) {
   const extension = formatToExtension(format);
   const browser = await puppeteer.launch({ headless: true });
@@ -57,7 +57,6 @@ export async function writeSnapshot(
   // Create the filepath for the generated snapshot
   const filepath = path.join(
     outdir,
-    name,
     breakpoint.name
       ? `${breakpoint.name}-${breakpoint.width}x${breakpoint.height}.${extension}`
       : `${breakpoint.width}x${breakpoint.height}.${extension}`
@@ -121,7 +120,9 @@ export async function executeSnapshot(
     throw new Error('No default breakpoint set');
   }
 
-  const targetDir = path.join(outdir, entry.outputName);
+  const datedir = dateFormat(new Date(), 'YYYYMMDD-HHMMSS');
+  const targetDir = path.join(outdir, entry.outputName, datedir);
+
   try {
     await new Promise(resolve => mkdirp(targetDir, resolve));
   } catch (e) {
@@ -130,6 +131,6 @@ export async function executeSnapshot(
 
   // generate the snapshot for each breakpoint
   entry.breakpoints.forEach(element =>
-    writeSnapshot(entry.url, entry.outputName, element, outdir, format)
+    writeSnapshot(entry.url, entry.outputName, element, targetDir, format)
   );
 }

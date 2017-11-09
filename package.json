@@ -42,15 +42,21 @@
   "dependencies": {
     "chalk": "^2.3.0",
     "commander": "^2.11.0",
+    "date-fns": "^1.29.0",
     "interpret": "^1.0.4",
+    "jpeg-js": "^0.3.3",
     "mkdirp": "^0.5.1",
+    "pixelmatch": "^4.0.2",
+    "pngjs": "^3.3.0",
     "puppeteer": "^0.12.0"
   },
   "devDependencies": {
     "@types/commander": "^2.11.0",
     "@types/jest": "^21.1.5",
+    "@types/jpeg-js": "^0.3.0",
     "@types/mkdirp": "^0.5.1",
     "@types/node": "^8.0.47",
+    "@types/pngjs": "^3.3.0",
     "@types/puppeteer": "^0.12.1",
     "concurrently": "^3.5.0",
     "husky": "^0.14.3",
