@@ -1,6 +1,6 @@
 # PuppeteerTestingtool (To be renamed)
 
-This is a cli tool to enable the ability to quickly take visual snapshots of webpages. The  the purpose of this is to enable an automated method to perform regression testing on visual designs.
+This is a cli tool to enable the ability to quickly take visual snapshots of webpages. The  the purpose of this is to enable an automated method to perform regression testing on visual designs. 
 
 ## Installation
 
@@ -8,21 +8,11 @@ This is a cli tool to enable the ability to quickly take visual snapshots of web
 npm install {TO BE DETERMINED} -g
 ```
 
+## 
+
 ## Usage
 
-TBD
-
-### Snapshots
-
-TBD
-
-### Diffing
-
-TBD
-
-## Arguments
-
-TBD
+{TO BE DETERMINED}
 
 ### Snapshots
 
@@ -36,20 +26,30 @@ TBD
 
 ### Diffing
 
-TBD
+
+## Development
+
+1. Clone the repository
+
+2. `yarn install`
+
+GO
+
+### Scripts
+
+
 
 ### Dependencies
 
-* [Chalk](https://github.com/chalk/chalk)
-* [Commander.js](https://github.com/tj/commander.js/)
-* [Puppeteer](https://github.com/GoogleChrome/puppeteer)
+* [chalk](https://github.com/chalk/chalk)
+* [commander.js](https://github.com/tj/commander.js/)
+* [puppeteer](https://github.com/GoogleChrome/puppeteer)
 * [interpret](https://github.com/js-cli/js-interpret)
 * [mkdirp](https://github.com/substack/node-mkdirp)
-
-### Development
-
-TBD
-
+* [date-fns](https://github.com/date-fns/date-fns)
+* [jpeg-js](https://github.com/eugeneware/jpeg-js)
+* [pixelmatch](https://github.com/mapbox/pixelmatch)
+* [pngjs](https://github.com/lukeapage/pngjs)
 
 ## License
 
