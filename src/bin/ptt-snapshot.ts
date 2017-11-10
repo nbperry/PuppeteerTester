@@ -1,8 +1,13 @@
+/* External Imports */
+
 import * as program from 'commander';
+
+/* Internal Imports */
+
 import { loadConfiguration } from '../lib/configuration';
 import * as message from '../lib/message';
 import { runConfiguration, runSnapshot } from '../lib/snapshot';
-import { isConfiguration, isSnapshot } from '../types/guards';
+import { isConfiguration, isSnapshot } from '../types/internal/guards';
 
 program
   .alias('pt snapshot')
@@ -17,6 +22,11 @@ program
   .option('-w, --width <width>', 'Width of the viewport')
   .parse(process.argv);
 
+/**
+ * Executes the snapshot cli
+ *
+ * @returns
+ */
 function run() {
   const {
     breakpoint,

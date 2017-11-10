@@ -1,7 +1,9 @@
 import { loadConfiguration } from './lib/configuration';
 import * as message from './lib/message';
 import * as snapshot from './lib/snapshot';
-import * as guards from './types/guards';
+import * as guards from './types/internal/guards';
+
+// TODO: Currently this is used for testing during development, we should refactor this out into tests
 
 /**
  * Entry point to directly running the snapshot with TypeScript config

@@ -17,7 +17,8 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"yarn run watch\" \"yarn run dev\"",
-    "cli": "node dist/bin/ptt.js snapshot -c ptt.config.ts",
+    "cli:snapshot": "node dist/bin/ptt.js snapshot -c example-config.json",
+    "cli:diff": "node dist/bin/ptt.js diff -c example-config.json",
     "build": "tsc",
     "watch": "tsc --watch",
     "dev": "wait-on dist/run-snapshot.js && nodemon dist/run-snapshot.js",

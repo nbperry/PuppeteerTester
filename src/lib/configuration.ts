@@ -1,11 +1,20 @@
+/* External Imports */
+
 import * as interpret from 'interpret';
 import * as path from 'path';
+
+/* Internal Imports */
+
 import * as message from './message';
 
 /**
- * Loads a configuration
+ *  Loads a configuration
  *
- * @param configFile
+ * Currently confirmed to support: .json, .ts, .js
+ *
+ * @export
+ * @param {string} [configFile] path to the config file
+ * @returns {(PT.Configuration | undefined)}
  */
 export function loadConfiguration(
   configFile?: string
@@ -37,7 +46,7 @@ export function loadConfiguration(
  * Register the appropriate compiler for the extension of configuration file.  Uses
  * node-inspect to support a wide range of source formats.
  *
- * @param moduleDescriptor
+ * @param {interpret.Descriptor} [moduleDescriptor]
  */
 function registerCompiler(moduleDescriptor?: interpret.Descriptor) {
   if (moduleDescriptor) {

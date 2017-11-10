@@ -1,9 +1,11 @@
-import * as message from '../lib/message';
+import * as message from '../../lib/message';
 
 /**
  * Tests whether argument is a `Breakpoint`.
  *
- * @param obj
+ * @export
+ * @param {*} obj
+ * @returns {obj is PT.Breakpoint}
  */
 export function isBreakpoint(obj: any): obj is PT.Breakpoint {
   // message.log(`Guards.isBreakpoint - typeof obj === 'object': ${typeof obj === 'object'}`);
@@ -22,7 +24,9 @@ export function isBreakpoint(obj: any): obj is PT.Breakpoint {
 /**
  * Tests whether argument is an `Output`.
  *
- * @param obj
+ * @export
+ * @param {*} obj
+ * @returns {obj is PT.Output}
  */
 export function isOutput(obj: any): obj is PT.Output {
   // message.log(`Guards.isOutput - typeof obj === 'object': ${typeof obj === 'object'}`);
@@ -34,14 +38,16 @@ export function isOutput(obj: any): obj is PT.Output {
     typeof obj === 'object' &&
     (!obj.diffPath || typeof obj.diffPath === 'string') &&
     (!obj.format || typeof obj.format === 'string') &&
-    typeof obj.path === 'string'
+    typeof obj.snapshotPath === 'string'
   );
 }
 
 /**
  * Tests whether argument is a `Snapshot`.
  *
- * @param obj
+ * @export
+ * @param {*} obj
+ * @returns {obj is PT.Snapshot}
  */
 export function isSnapshot(obj: any): obj is PT.Snapshot {
   // message.log(`Guards.isSnapshot - typeof obj === 'object': ${typeof obj === 'object'}`);
@@ -53,6 +59,7 @@ export function isSnapshot(obj: any): obj is PT.Snapshot {
     typeof obj === 'object' &&
     typeof obj.outputName === 'string' &&
     typeof obj.url === 'string' &&
+    (typeof obj.generateDiff === 'boolean' || obj.generateDiff === undefined) &&
     (Array.isArray(obj.breakpoints) &&
       obj.breakpoints.every((breakpoint: any) => isBreakpoint(breakpoint)))
   );
@@ -61,7 +68,9 @@ export function isSnapshot(obj: any): obj is PT.Snapshot {
 /**
  * Tests whether argument is a `Snapshot[]`.
  *
- * @param obj
+ * @export
+ * @param {*} obj
+ * @returns {obj is PT.Snapshot[]}
  */
 export function isArrayOfSnapshot(obj: any): obj is PT.Snapshot[] {
   return (
@@ -71,7 +80,10 @@ export function isArrayOfSnapshot(obj: any): obj is PT.Snapshot[] {
 
 /**
  * Tests whether argument is a `Configuration`.
- * @param obj
+ *
+ * @export
+ * @param {*} obj
+ * @returns {obj is PT.Configuration}
  */
 export function isConfiguration(obj: any): obj is PT.Configuration {
   message.log(

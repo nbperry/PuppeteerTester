@@ -14,7 +14,8 @@ const configuration = {
         { width: 480, height: 640, name: 'Smaller_screen' }
       ],
       outputName: 'hackernews',
-      url: 'https://news.ycombinator.com/'
+      url: 'https://news.ycombinator.com/',
+      generateDiff: true
     }
   ]
 };

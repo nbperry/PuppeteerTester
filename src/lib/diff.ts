@@ -1,27 +1,54 @@
+/* External Imports */
+
 import * as fs from 'fs';
 import * as jpeg from 'jpeg-js';
 import * as mkdirp from 'mkdirp';
 import * as path from 'path';
 import * as pixelmatch from 'pixelmatch';
 import { PNG } from 'pngjs';
-import * as message from '../lib/message';
+import { isArray } from 'util';
 
-// const PMImageData = pixelmatch.ImageData;
+/* Internal Imports */
 
-/** The image data and dimensions of a loaded image of some type */
+import * as message from './message';
+
+/**
+ * The image data and dimensions of a loaded image of some type
+ *
+ * @export
+ * @interface LoadedImage
+ */
 export interface LoadedImage {
-  /** Compatible pixelmatch ImageData */
+  /**
+   * Compatible pixelmatch ImageData
+   *
+   * @type {(Buffer | Uint8Array | ImageData)}
+   * @memberof LoadedImage
+   */
   data: Buffer | Uint8Array | ImageData;
-  /** The width of the image */
+
+  /**
+   * The width of the image
+   *
+   * @type {number}
+   * @memberof LoadedImage
+   */
   width: number;
-  /** The height of the image */
+
+  /**
+   * The height of the image
+   *
+   * @type {number}
+   * @memberof LoadedImage
+   */
   height: number;
 }
 
 /**
  * Load a PNG image and return a `LoadedImage` representation.
  *
- * @param filePath
+ * @param {string} filePath
+ * @returns {Promise<LoadedImage>}
  */
 async function loadPNG(filePath: string): Promise<LoadedImage> {
   return new Promise<LoadedImage>((resolve, reject) => {
@@ -40,7 +67,8 @@ async function loadPNG(filePath: string): Promise<LoadedImage> {
 /**
  * Load a JPEG image and return a `LoadedImage` representation.
  *
- * @param filePath
+ * @param {string} filePath
+ * @returns {Promise<LoadedImage>}
  */
 async function loadJPEG(filePath: string): Promise<LoadedImage> {
   const file = fs.readFileSync(filePath);
@@ -50,7 +78,8 @@ async function loadJPEG(filePath: string): Promise<LoadedImage> {
 /**
  * Load a supported image by path.  Currently support '.jpg' and '.png';
  *
- * @param filePath
+ * @param {string} filePath
+ * @returns
  */
 async function loadImage(filePath: string) {
   const extension = path.extname(filePath);
@@ -70,9 +99,11 @@ async function loadImage(filePath: string) {
  * Create an image difference of two images and write it to a path.  Currently
  * only .png output.
  *
- * @param inPath1
- * @param inPath2
- * @param outPath
+ * @export
+ * @param {string} inPath1 first image to compare
+ * @param {string} inPath2 second image to compare
+ * @param {string} outPath the result of the comparison
+ * @returns
  */
 export async function diff(inPath1: string, inPath2: string, outPath: string) {
   const in1 = await loadImage(inPath1);
@@ -112,7 +143,10 @@ const intersect = (a: any[], b: any[]) =>
 /**
  * Get the last two directory paths
  *
- * @returns {[string, string]} tuple containing `[new, old]` directory paths
+ * TODO: review documentation wording
+ *
+ * @param {string} dirPath
+ * @returns {([string, string] | null)} tuple containing `[new, old]` directory paths
  */
 function getLastTwoDirs(dirPath: string): [string, string] | null {
   const source = path.resolve(dirPath);
@@ -129,7 +163,8 @@ function getLastTwoDirs(dirPath: string): [string, string] | null {
 /**
  * Get all of the image paths in a directory.
  *
- * @param dirPath
+ * @param {string} dirPath
+ * @returns
  */
 function getImages(dirPath: string) {
   return fs
@@ -164,11 +199,16 @@ const getFileName = (baseName: string) =>
     : baseName;
 
 /**
- * Get a difference of the last two subdirectories at a directory path.
+ * Get a difference of the last two subdirectories at a directory path and outputs the diff to the output directory
  *
- * @param dirPath
+ * TODO: Review documentation wording
+ *
+ * @export
+ * @param {string} dirPath
+ * @param {string} [outputDirectory]
+ * @returns
  */
-export function diffLastTwo(dirPath: string) {
+export function diffLastTwo(dirPath: string, outputDirectory?: string) {
   const lastTwoDirs = getLastTwoDirs(dirPath);
   if (lastTwoDirs === null) {
     return message.error(
@@ -192,10 +232,14 @@ export function diffLastTwo(dirPath: string) {
   const newSubDirName = getLastDirName(newDir) as string;
   // Create a new directory at the same level as `dirPath` appended with `-diff`.
   // @TODO: Consider other options for this
-  const outdir = path.join(
-    `${path.resolve(dirPath)}-diff`,
-    `${newSubDirName}-vs-${oldSubDirName}`
-  );
+
+  const outdir = !outputDirectory
+    ? path.join(
+        `${path.resolve(dirPath)}-diff`,
+        `${newSubDirName}-vs-${oldSubDirName}`
+      )
+    : path.join(outputDirectory, `${newSubDirName}-vs-${oldSubDirName}`);
+
   mkdirp(outdir, () =>
     sameFiles.forEach(file => {
       const baseName = path.basename(file);
@@ -205,4 +249,32 @@ export function diffLastTwo(dirPath: string) {
       diff(oldPath, newPath, outPath);
     })
   );
+}
+/**
+ *
+ *
+ * @export
+ * @param {PT.Configuration} configuration
+ */
+export function runDiffConfiguration(configuration: PT.Configuration) {
+  if (isArray(configuration.snapshot)) {
+    // Take a diff of every directory in the configuration for every snapshot that the generateDiff flag is true
+    configuration.snapshot
+      .filter(value => value.generateDiff)
+      .forEach(snapshot =>
+        diffLastTwo(
+          `${configuration.output.snapshotPath}/${snapshot.outputName}`,
+          configuration.output.diffPath
+        )
+      );
+  } else {
+    // if the generateDiff flag is true generate a diff for the snapshot
+    if (configuration.snapshot.generateDiff) {
+      diffLastTwo(
+        `${configuration.output.snapshotPath}/${configuration.snapshot
+          .outputName}`,
+        configuration.output.diffPath
+      );
+    }
+  }
 }

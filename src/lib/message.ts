@@ -1,9 +1,16 @@
+/* External Imports */
+
 import chalk from 'chalk';
 
 export type MessageType = 'log' | 'info' | 'warn' | 'error';
 
 const argsToString = (args: any[]) => args.map(arg => arg.toString()).join(' ');
-
+/**
+ * Creates the label for an ouput message with the appropiate label color
+ *
+ * @param {MessageType} type
+ * @returns
+ */
 function createLabel(type: MessageType) {
   const label = ` ${type.toUpperCase()} `;
   switch (type) {
@@ -17,7 +24,13 @@ function createLabel(type: MessageType) {
       return label;
   }
 }
-
+/**
+ * Creates the text for an output message with the appropiate label color
+ *
+ * @param {MessageType} type
+ * @param {...any[]} args  arguments to be output via the output message
+ * @returns
+ */
 function createMessage(type: MessageType, ...args: any[]) {
   const message = argsToString(args);
   switch (type) {
@@ -32,8 +45,20 @@ function createMessage(type: MessageType, ...args: any[]) {
   }
 }
 
-const format = (label: string, message: string) => `${label} ${message}`;
+/**
+ * Formats the output message
+ *
+ * @param {string} label
+ * @param {string} message
+ */
+const format = (label: string, message: string) => `${label}: ${message}`;
 
+/**
+ * Outputs the appropriate message type
+ *
+ * @param {MessageType} type
+ * @param {...any[]} args
+ */
 function output(type: MessageType, ...args: any[]) {
   // tslint:disable-next-line no-console
   console[type](format(createLabel(type), createMessage(type, args)));

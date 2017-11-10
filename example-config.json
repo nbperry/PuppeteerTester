@@ -2,7 +2,7 @@
     "output": {
         "diffPath": "snapshots/diff",
         "format": "jpeg",
-        "path": "snapshots/output"
+        "snapshotPath": "snapshots/output"
     },
     "snapshot": [
         {
@@ -11,8 +11,9 @@
               { "width": 1366, "height": 768 },
               { "width": 480, "height": 640, "name": "Smaller_screen" }
             ],
-            "outputName": "hackernews",
-            "url": "https://news.ycombinator.com/"
+            "outputName": "hackernews",            
+            "url": "https://news.ycombinator.com/",
+            "generateDiff": true
         }
     ]
 }
