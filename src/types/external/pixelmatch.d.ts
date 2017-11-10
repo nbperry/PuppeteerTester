@@ -27,7 +27,7 @@ declare module 'pixelmatch' {
     width: number,
     height: number,
     options?: Options
-  ): void;
+  ): number;
 
   namespace pixelmatch {
 

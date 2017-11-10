@@ -109,6 +109,10 @@ export async function diff(inPath1: string, inPath2: string, outPath: string) {
   const in1 = await loadImage(inPath1);
   const in2 = await loadImage(inPath2);
 
+  message.log(`File1 path: ${inPath1}`);
+  message.log(`File2 path: ${inPath2}`);
+
+  // Validate first and second input file
   if (!in1) {
     throw new Error('Could not load first input file.');
   } else if (!in2) {
@@ -120,7 +124,19 @@ export async function diff(inPath1: string, inPath2: string, outPath: string) {
 
   const out = new PNG({ width, height });
 
-  pixelmatch(in1.data, in2.data, out.data, width, height);
+  // Create the image diff
+  const percentage =
+    pixelmatch(in1.data, in2.data, out.data, width, height) /
+    (width * height) *
+    100;
+
+  // output the information
+  // TODO: review the message for this
+  message.info(
+    `The difference between ${inPath1} & ${inPath2} is ${percentage.toFixed(
+      2
+    )} %`
+  );
 
   return new Promise((resolve, reject) => {
     out
@@ -150,6 +166,9 @@ const intersect = (a: any[], b: any[]) =>
  */
 function getLastTwoDirs(dirPath: string): [string, string] | null {
   const source = path.resolve(dirPath);
+
+  message.log(`Getting the two latest directories in ${dirPath}`);
+
   const sorted = fs
     .readdirSync(source)
     .map(i => path.resolve(source, i))

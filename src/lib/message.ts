@@ -15,11 +15,11 @@ function createLabel(type: MessageType) {
   const label = ` ${type.toUpperCase()} `;
   switch (type) {
     case 'info':
-      return chalk.white.bgBlue(label);
+      return chalk.bold.underline.white.bgBlue(label);
     case 'warn':
-      return chalk.white.bgYellow(label);
+      return chalk.bold.underline.white.bgYellow(label);
     case 'error':
-      return chalk.white.bgRed(label);
+      return chalk.bold.underline.white.bgRed(label);
     case 'log':
       return label;
   }
