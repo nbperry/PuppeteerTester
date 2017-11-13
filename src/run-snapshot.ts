@@ -19,7 +19,7 @@ export function run() {
     throw new Error(`Configuration at ${configPath} malformed.`);
   }
 
-  snapshot.runConfiguration(configuration);
+  snapshot.runSnapshotConfiguration(configuration);
 }
 
 run();

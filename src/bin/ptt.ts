@@ -6,6 +6,5 @@ program
   .version('0.0.1')
   .command('snapshot', 'Snapshot a website')
   .command('diff', 'Diff a set of snapshots')
+  .command('run', 'Perform a snapshot then a diff')
   .parse(process.argv);
-
-// TODO: Need to create a way for purely using a configuration file which would perform snapshots then a diff

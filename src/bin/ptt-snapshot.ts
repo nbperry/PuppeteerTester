@@ -6,7 +6,7 @@ import * as program from 'commander';
 
 import { loadConfiguration } from '../lib/configuration';
 import * as message from '../lib/message';
-import { runConfiguration, runSnapshot } from '../lib/snapshot';
+import { runSnapshot, runSnapshotConfiguration } from '../lib/snapshot';
 import { isConfiguration, isSnapshot } from '../types/internal/guards';
 
 program
@@ -46,7 +46,7 @@ function run() {
       return message.error(`Configuration at ${config} malformed.`);
     }
     message.log('Running with a valid configuration.');
-    runConfiguration(configuration);
+    runSnapshotConfiguration(configuration);
   } else {
     const snapshot: PT.Snapshot = {
       breakpoints: [

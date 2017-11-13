@@ -29,14 +29,13 @@ function formatToExtension(format: PT.OutputFormat) {
 /**
  * Take a screenshot from a url at a given breakpoint and write it out to a file
  *
- * @export
  * @param {string} url Url to navigate to for taking a screenshot
  * @param {string} name the name of the image to save
  * @param {PT.Breakpoint} breakpoint Object containing the resolutions for the browser viewport
  * @param {string} outdir Output directory
  * @param {PT.OutputFormat} [format=DEFAULT_OUTPUT_FORMAT] the image format to use
  */
-export async function writeSnapshot(
+async function writeSnapshot(
   url: string,
   name: string,
   breakpoint: PT.Breakpoint,
@@ -79,8 +78,10 @@ export async function writeSnapshot(
  * @export
  * @param {PT.Configuration} configuration configuration for executing snapshot functionality
  */
-export async function runConfiguration(configuration: PT.Configuration) {
-  runSnapshot(
+export async function runSnapshotConfiguration(
+  configuration: PT.Configuration
+): Promise<void> {
+  return runSnapshot(
     configuration.snapshot,
     configuration.output.snapshotPath,
     configuration.output.format
@@ -94,28 +95,38 @@ export async function runConfiguration(configuration: PT.Configuration) {
  * @param {(PT.Snapshot | PT.Snapshot[])} entryOrEntriesA single snapshot or multiple snapshot entries
  * @param {string} [outdir=''] the output directory for all snapshots
  * @param {PT.OutputFormat} [format] the image format to use
+ *
  */
 export async function runSnapshot(
   entryOrEntries: PT.Snapshot | PT.Snapshot[],
   outdir: string = '',
   format?: PT.OutputFormat
-) {
+): Promise<void> {
   if (isArray(entryOrEntries)) {
-    entryOrEntries.forEach(entry => executeSnapshot(entry, outdir, format));
+    const array: Array<Promise<void>> = [];
+
+    entryOrEntries.forEach(entry =>
+      array.push(executeSnapshot(entry, outdir, format))
+    );
+
+    return Promise.all<Promise<void>>(array).then(() => {
+      Promise.resolve();
+    });
   } else {
-    executeSnapshot(entryOrEntries, outdir, format);
+    return executeSnapshot(entryOrEntries, outdir, format);
   }
 }
 
 /**
  * Execute a snapshot entry
  *
- * @export
  * @param {PT.Snapshot} entry A single snapshot entry
  * @param {string} outdir the output directory for all snapshots for the given entry
  * @param {PT.OutputFormat} [format] the image format to use
+ *
+ * @returns {Promise<void>} resolves when all of the breakpoints for the snapshot entry have been snapshotted
  */
-export async function executeSnapshot(
+async function executeSnapshot(
   entry: PT.Snapshot,
   outdir: string,
   format?: PT.OutputFormat
@@ -137,7 +148,16 @@ export async function executeSnapshot(
   }
 
   // generate the snapshot for each breakpoint
+  const array: Array<Promise<void>> = [];
+
+  // generate the snapshot for each breakpoint
   entry.breakpoints.forEach(element =>
-    writeSnapshot(entry.url, entry.outputName, element, targetDir, format)
+    array.push(
+      writeSnapshot(entry.url, entry.outputName, element, targetDir, format)
+    )
   );
+
+  return Promise.all(array).then(() => {
+    Promise.resolve();
+  });
 }
