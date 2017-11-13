@@ -1,8 +1,15 @@
+
+# external dependencies
 node_modules/
 
+# buidl files
 dist
 
-# used for generated images
+# used for tests
+tests/output
+
+# used for local development generated images
 output
 diff
 snapshots
+

@@ -1,7 +1,7 @@
 {
     "output": {
         "diffPath": "snapshots/diff",
-        "format": "jpeg",
+        "format": "png",
         "snapshotPath": "snapshots/output"
     },
     "snapshot": [

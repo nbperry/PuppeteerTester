@@ -41,7 +41,7 @@ async function writeSnapshot(
   breakpoint: PT.Breakpoint,
   outdir: string,
   format: PT.OutputFormat = DEFAULT_OUTPUT_FORMAT
-) {
+): Promise<string> {
   const extension = formatToExtension(format);
   const browser = await puppeteer.launch({ headless: true });
   const page = await browser.newPage();
@@ -70,6 +70,9 @@ async function writeSnapshot(
   });
 
   await browser.close();
+
+  // return the filepath for the screen that was generated
+  return filepath;
 }
 
 /**
@@ -80,7 +83,7 @@ async function writeSnapshot(
  */
 export async function runSnapshotConfiguration(
   configuration: PT.Configuration
-): Promise<void> {
+): Promise<void | string[]> {
   return runSnapshot(
     configuration.snapshot,
     configuration.output.snapshotPath,
@@ -101,16 +104,19 @@ export async function runSnapshot(
   entryOrEntries: PT.Snapshot | PT.Snapshot[],
   outdir: string = '',
   format?: PT.OutputFormat
-): Promise<void> {
+): Promise<void | string[]> {
   if (isArray(entryOrEntries)) {
-    const snapshotPromises: Array<Promise<void>> = [];
+    const snapshotPromises: Array<Promise<string[]>> = [];
 
     entryOrEntries.forEach(entry =>
       snapshotPromises.push(executeSnapshot(entry, outdir, format))
     );
 
-    return Promise.all<Promise<void>>(snapshotPromises).then(() => {
-      Promise.resolve();
+    // flatten the array of string[] into a single string array
+    return Promise.all(snapshotPromises).then(arrays => {
+      return arrays.reduce((a, b) => {
+        return a.concat(b);
+      });
     });
   } else {
     return executeSnapshot(entryOrEntries, outdir, format);
@@ -131,6 +137,7 @@ async function executeSnapshot(
   outdir: string,
   format?: PT.OutputFormat
 ) {
+  message.log('Output directory', outdir);
   if (!entry.breakpoints) {
     message.error(
       `No breakpoints were set for the entry ${entry.outputName} - ${entry.url}`
@@ -148,7 +155,7 @@ async function executeSnapshot(
   }
 
   // generate the snapshot for each breakpoint
-  const snapshotPromises: Array<Promise<void>> = [];
+  const snapshotPromises: Array<Promise<string>> = [];
 
   // generate the snapshot for each breakpoint
   entry.breakpoints.forEach(element =>
@@ -157,7 +164,7 @@ async function executeSnapshot(
     )
   );
 
-  return Promise.all(snapshotPromises).then(() => {
-    Promise.resolve();
+  return Promise.all(snapshotPromises).then(filepaths => {
+    return Promise.resolve(filepaths);
   });
 }

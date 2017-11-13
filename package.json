@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "description": "Tool used for generating snapshots of a website as a part of CI/CD process",
   "main": "dist/bin/ptt.js",
+  "bin": "./bin/ptt",
   "author": {
     "name": "Nathan Brooker Perry",
     "email": "nbp8557@rit.edu"
@@ -17,12 +18,12 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"yarn run watch\" \"yarn run dev\"",
-    "cli:snapshot": "node dist/bin/ptt.js snapshot -c example-config.json",
-    "cli:diff": "node dist/bin/ptt.js diff -c example-config.json",
-    "cli": "node dist/bin/ptt.js run -c example-config.json",
+    "cli:snapshot": "node dist/bin/ptt.js snapshot -c tests/mock-config/example-config.json",
+    "cli:diff": "node dist/bin/ptt.js diff -c tests/mock-config/example-config.json",
+    "cli": "node dist/bin/ptt.js run -c tests/mock-config/example-config.json",
     "build": "tsc",
     "watch": "tsc --watch",
-    "dev": "wait-on dist/bin/ptt.js && nodemon dist/bin/ptt.js run -c example-config.json",
+    "dev": "wait-on dist/bin/ptt.js && nodemon dist/bin/ptt.js run -c tests/mock-config/example-config.json",
     "pretty": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
     "test": "jest",
@@ -37,7 +38,10 @@
     ]
   },
   "jest": {
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(js?|ts?)$",
+    "transform": {
+      "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(test.js?|test.ts?)$",
     "moduleFileExtensions": [
       "ts",
       "js"
@@ -62,12 +66,14 @@
     "@types/node": "^8.0.47",
     "@types/pngjs": "^3.3.0",
     "@types/puppeteer": "^0.12.1",
+    "@types/rimraf": "^2.0.2",
     "concurrently": "^3.5.0",
     "husky": "^0.14.3",
     "jest": "^21.2.1",
     "lint-staged": "^4.3.0",
     "nodemon": "^1.12.1",
     "prettier": "^1.7.4",
+    "rimraf": "^2.6.2",
     "serve": "^6.4.1",
     "ts-jest": "^21.1.4",
     "ts-node": "^3.3.0",
