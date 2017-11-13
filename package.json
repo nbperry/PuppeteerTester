@@ -22,7 +22,7 @@
     "cli": "node dist/bin/ptt.js run -c example-config.json",
     "build": "tsc",
     "watch": "tsc --watch",
-    "dev": "wait-on dist/run-snapshot.js && nodemon dist/run-snapshot.js",
+    "dev": "wait-on dist/bin/ptt.js && nodemon dist/bin/ptt.js run -c example-config.json",
     "pretty": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
     "test": "jest",

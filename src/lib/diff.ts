@@ -222,7 +222,6 @@ const getFileName = (baseName: string) =>
  *
  * TODO: Review documentation wording
  *
- * @export
  * @param {string} dirPath
  * @param {string} [outputDirectory]
  * @returns
@@ -230,9 +229,10 @@ const getFileName = (baseName: string) =>
 export function diffLastTwo(dirPath: string, outputDirectory?: string) {
   const lastTwoDirs = getLastTwoDirs(dirPath);
   if (lastTwoDirs === null) {
-    return message.error(
+    message.error(
       `Can not diff last two because there are less than two directories at ${dirPath}.`
     );
+    return Promise.resolve();
   }
   const [newDir, oldDir] = lastTwoDirs;
 
@@ -241,9 +241,11 @@ export function diffLastTwo(dirPath: string, outputDirectory?: string) {
     getImages(newDir).map(file => `${path.basename(file)}`)
   );
   if (sameFiles.length === 0) {
-    return message.error(
+    message.error(
       `Directories ${oldDir} and ${newDir} don't contain any of the same files.`
     );
+
+    return Promise.resolve();
   }
 
   // Coerced - we know these are valid paths
@@ -259,41 +261,54 @@ export function diffLastTwo(dirPath: string, outputDirectory?: string) {
       )
     : path.join(outputDirectory, `${newSubDirName}-vs-${oldSubDirName}`);
 
+  const diffPromises: Array<Promise<{}>> = [];
+
   mkdirp(outdir, () =>
     sameFiles.forEach(file => {
       const baseName = path.basename(file);
       const oldPath = path.join(oldDir, `${baseName}`);
       const newPath = path.join(newDir, `${baseName}`);
       const outPath = path.join(outdir, `${getFileName(baseName)}.png`);
-      diff(oldPath, newPath, outPath);
+      diffPromises.push(diff(oldPath, newPath, outPath));
     })
   );
+
+  return Promise.all(diffPromises).then(() => Promise.resolve());
 }
+
 /**
- *
+ *  Executes a diff based on the configuration
  *
  * @export
  * @param {PT.Configuration} configuration
  */
 export function runDiffConfiguration(configuration: PT.Configuration) {
+  const diffPromises: Array<Promise<void>> = [];
+
   if (isArray(configuration.snapshot)) {
     // Take a diff of every directory in the configuration for every snapshot that the generateDiff flag is true
     configuration.snapshot
       .filter(value => value.generateDiff)
       .forEach(snapshot =>
-        diffLastTwo(
-          `${configuration.output.snapshotPath}/${snapshot.outputName}`,
-          configuration.output.diffPath
+        diffPromises.push(
+          diffLastTwo(
+            `${configuration.output.snapshotPath}/${snapshot.outputName}`,
+            configuration.output.diffPath
+          )
         )
       );
   } else {
     // if the generateDiff flag is true generate a diff for the snapshot
     if (configuration.snapshot.generateDiff) {
-      diffLastTwo(
-        `${configuration.output.snapshotPath}/${configuration.snapshot
-          .outputName}`,
-        configuration.output.diffPath
+      diffPromises.push(
+        diffLastTwo(
+          `${configuration.output.snapshotPath}/${configuration.snapshot
+            .outputName}`,
+          configuration.output.diffPath
+        )
       );
     }
   }
+
+  return Promise.all(diffPromises).then(() => Promise.resolve());
 }

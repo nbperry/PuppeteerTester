@@ -103,13 +103,13 @@ export async function runSnapshot(
   format?: PT.OutputFormat
 ): Promise<void> {
   if (isArray(entryOrEntries)) {
-    const array: Array<Promise<void>> = [];
+    const snapshotPromises: Array<Promise<void>> = [];
 
     entryOrEntries.forEach(entry =>
-      array.push(executeSnapshot(entry, outdir, format))
+      snapshotPromises.push(executeSnapshot(entry, outdir, format))
     );
 
-    return Promise.all<Promise<void>>(array).then(() => {
+    return Promise.all<Promise<void>>(snapshotPromises).then(() => {
       Promise.resolve();
     });
   } else {
@@ -148,16 +148,16 @@ async function executeSnapshot(
   }
 
   // generate the snapshot for each breakpoint
-  const array: Array<Promise<void>> = [];
+  const snapshotPromises: Array<Promise<void>> = [];
 
   // generate the snapshot for each breakpoint
   entry.breakpoints.forEach(element =>
-    array.push(
+    snapshotPromises.push(
       writeSnapshot(entry.url, entry.outputName, element, targetDir, format)
     )
   );
 
-  return Promise.all(array).then(() => {
+  return Promise.all(snapshotPromises).then(() => {
     Promise.resolve();
   });
 }
