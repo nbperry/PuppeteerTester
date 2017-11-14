@@ -38,7 +38,24 @@ function run() {
     width
   } = program;
 
-  if (!url && !breakpoint && !height && !snapshotName && !outdir && !width) {
+  if (
+    !url &&
+    !breakpoint &&
+    !height &&
+    !snapshotName &&
+    !outdir &&
+    !width &&
+    !config
+  ) {
+    program.outputHelp();
+  } else if (
+    !url &&
+    !breakpoint &&
+    !height &&
+    !snapshotName &&
+    !outdir &&
+    !width
+  ) {
     const configuration = loadConfiguration(config);
     if (!configuration) {
       return message.error(`Could not find configuration at ${config}.`);
