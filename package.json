@@ -26,7 +26,7 @@
     "dev": "wait-on dist/bin/ptt.js && nodemon dist/bin/ptt.js run -c tests/mock-config/example-config.json",
     "pretty": "prettier --write \"src/**/*.ts\"",
     "lint": "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
-    "test": "jest",
+    "test": "jest -i",
     "precommit": "lint-staged && yarn run lint && yarn test",
     "docs:build": "typedoc --mode modules --excludeExternals --includeDeclarations --out docs/ src/",
     "docs:serve": "serve docs/"

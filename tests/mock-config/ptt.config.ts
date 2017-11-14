@@ -1,12 +1,10 @@
 import * as path from 'path';
 
-import { TEST_OUTPUT_DIRECTORY } from '../constants';
-
 const configuration = {
   output: {
-    diffPath: path.join(TEST_OUTPUT_DIRECTORY, 'snapshots', 'diff'),
+    diffPath: path.join(process.cwd(), 'snapshots', 'diff'),
     format: 'png',
-    path: path.join(TEST_OUTPUT_DIRECTORY, 'snapshots', 'output')
+    path: path.join(process.cwd(), 'snapshots', 'output')
   },
   snapshot: [
     {

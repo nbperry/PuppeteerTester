@@ -5,9 +5,6 @@ node_modules/
 # buidl files
 dist
 
-# used for tests
-tests/output
-
 # used for local development generated images
 output
 diff

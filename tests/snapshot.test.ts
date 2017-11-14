@@ -1,17 +1,17 @@
 import * as rimraf from 'rimraf';
 
 import { runSnapshot } from '../src/lib/snapshot';
-import { TEST_OUTPUT_DIRECTORY } from './constants';
+import { TEST_SNAPSHOT_OUTPUT_DIRECTORY } from './constants';
 
 describe('Snapshot tests', () => {
   beforeEach(() => {
     // Clean out the test ouput directory prior to each test
-    rimraf.sync(TEST_OUTPUT_DIRECTORY);
+    rimraf.sync(TEST_SNAPSHOT_OUTPUT_DIRECTORY);
   });
 
   afterAll(() => {
     // Clean out the test ouput directory after all tests
-    rimraf.sync(TEST_OUTPUT_DIRECTORY);
+    rimraf.sync(TEST_SNAPSHOT_OUTPUT_DIRECTORY);
   });
 
   // tslint:disable-next-line only-arrow-functions
@@ -30,7 +30,7 @@ describe('Snapshot tests', () => {
 
     const snapshotArray = await runSnapshot(
       snapshot,
-      TEST_OUTPUT_DIRECTORY,
+      TEST_SNAPSHOT_OUTPUT_DIRECTORY,
       'png'
     );
 
@@ -55,7 +55,7 @@ describe('Snapshot tests', () => {
 
     const snapshotArray = await runSnapshot(
       snapshot,
-      TEST_OUTPUT_DIRECTORY,
+      TEST_SNAPSHOT_OUTPUT_DIRECTORY,
       'png'
     );
 
@@ -86,7 +86,7 @@ describe('Snapshot tests', () => {
 
     const snapshotArray = await runSnapshot(
       snapshot,
-      TEST_OUTPUT_DIRECTORY,
+      TEST_SNAPSHOT_OUTPUT_DIRECTORY,
       'png'
     );
 
@@ -135,7 +135,7 @@ describe('Snapshot tests', () => {
 
     const snapshotArray = await runSnapshot(
       snapshots,
-      TEST_OUTPUT_DIRECTORY,
+      TEST_SNAPSHOT_OUTPUT_DIRECTORY,
       'png'
     );
 
@@ -186,7 +186,7 @@ describe('Snapshot tests', () => {
 
     const snapshotArray = await runSnapshot(
       snapshots,
-      TEST_OUTPUT_DIRECTORY,
+      TEST_SNAPSHOT_OUTPUT_DIRECTORY,
       'png'
     );
 
