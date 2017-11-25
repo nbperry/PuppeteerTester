@@ -2,9 +2,11 @@
 
 A visual regressing testing tool used for generating visual snapshots of webpages and perform visual differences. 
 
-TBD
+This library is capable of being used for snapshotting, diffing, and a combination of these two.
 
 ## Installation
+
+To install globally as a CLI tool
 
 ```sh
 npm install {toolname} -g
@@ -13,7 +15,6 @@ or
 
 yarn global add {toolname}
 ```
-
 
 ## Usage
 
@@ -45,11 +46,12 @@ This will perform snapshots then diff comparisons according to the configuration
 * `-n, --snapshotName <snapshotName>` Name of the outputed snapshot
 * `-o, --outdir <outdir>` the directory in which the snapshot should be outputed
 * `-u, --url <url>` Url of the website to snapshot
-* `-h, --help` output this help information
+* `-h, --help` output help information
 
 #### Examples
 
-TBD
+perform a snapshot via cli
+`{toolname} snapshot -h 1080 -w 1920 -b AwesomePicture -n GoogleSnapshots -o Snapshots -u https://google.com`
 
 ### Diffing CLI 
 ```
@@ -60,12 +62,12 @@ Create a diff of two images and write it to a file.  Inputs must be .png or .jpg
 ```
 
 * `-c, --config <config>` A configuration file to perform diff comparisons with
-* `-h, --help` output this help information
+* `-h, --help` output help information
 
 #### Examples
 
-TBD
-
+run via cli 
+`{toolname} diff oldFile.png newerFile.png diff.png`
 
 #### Example Configuration file
 
@@ -113,8 +115,6 @@ snapshot is a required array containing information pertaining explaining what s
 
 [See Typescript Types for a more detailed information](https://github.com/nbperry/PuppeteerTester/blob/5327bcbf6ef16b679ad70962740fc697e2d91795/src/types/internal/types.d.ts#L121)
 
-TBD
-
 
 ## Development
 
@@ -126,7 +126,6 @@ Developed using Node 8.9.1 (Current LTS version)
 
 You should be good to go.
 
-TODO: Need more here?
 
 ### Dependencies
 
