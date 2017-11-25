@@ -12,6 +12,7 @@ import {
 
 describe('Configuration Tests', () => {
   beforeEach(() => {
+    jasmine.DEFAULT_TIMEOUT_INTERVAL = 20000;
     // Clean out the test ouput directory prior to each test
     rimraf.sync(TEST_SNAPSHOT_OUTPUT_DIRECTORY);
   });
