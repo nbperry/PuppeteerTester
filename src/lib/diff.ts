@@ -280,9 +280,9 @@ export function diffLastTwo(dirPath: string, outputDirectory?: string) {
  *  Executes a diff based on the configuration
  *
  * @export
- * @param {PT.Configuration} configuration
+ * @param {Visualizer.Configuration} configuration
  */
-export function runDiffConfiguration(configuration: PT.Configuration) {
+export function runDiffConfiguration(configuration: Visualizer.Configuration) {
   const diffPromises: Array<Promise<void>> = [];
 
   if (isArray(configuration.snapshot)) {

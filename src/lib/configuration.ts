@@ -14,11 +14,11 @@ import * as message from './message';
  *
  * @export
  * @param {string} [configFile] path to the config file
- * @returns {(PT.Configuration | undefined)}
+ * @returns {(Visualizer.Configuration | undefined)}
  */
 export function loadConfiguration(
   configFile?: string
-): PT.Configuration | undefined {
+): Visualizer.Configuration | undefined {
   try {
     // If the configuration file exists
     if (configFile) {
@@ -34,7 +34,9 @@ export function loadConfiguration(
 
       const config = require(path.join(process.cwd(), configFile));
       // return the configuration object
-      return config.default ? config.default as PT.Configuration : config;
+      return config.default
+        ? config.default as Visualizer.Configuration
+        : config;
     }
   } catch (e) {
     message.error(e);

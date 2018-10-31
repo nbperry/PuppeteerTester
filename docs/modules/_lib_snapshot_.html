@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>&quot;lib/snapshot&quot; | puppeteer-testing-tool</title>
+	<title>&quot;lib/snapshot&quot; | visualizer</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">puppeteer-testing-tool</a>
+					<a href="../index.html" class="title">visualizer</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -71,11 +71,11 @@
 						<section class="tsd-index-section ">
 							<h3>Functions</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_lib_snapshot_.html#executesnapshot" class="tsd-kind-icon">execute<wbr>Snapshot</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_lib_snapshot_.html#executesnapshot" class="tsd-kind-icon">execute<wbr>Snapshot</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_lib_snapshot_.html#formattoextension" class="tsd-kind-icon">format<wbr>ToExtension</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_lib_snapshot_.html#runconfiguration" class="tsd-kind-icon">run<wbr>Configuration</a></li>
 								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_lib_snapshot_.html#runsnapshot" class="tsd-kind-icon">run<wbr>Snapshot</a></li>
-								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_lib_snapshot_.html#writesnapshot" class="tsd-kind-icon">write<wbr>Snapshot</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module"><a href="_lib_snapshot_.html#runsnapshotconfiguration" class="tsd-kind-icon">run<wbr>Snapshot<wbr>Configuration</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported"><a href="_lib_snapshot_.html#writesnapshot" class="tsd-kind-icon">write<wbr>Snapshot</a></li>
 							</ul>
 						</section>
 					</div>
@@ -83,17 +83,17 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Functions</h2>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 					<a name="executesnapshot" class="tsd-anchor"></a>
 					<h3>execute<wbr>Snapshot</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">execute<wbr>Snapshot<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_types_d_.pt.snapshot.html" class="tsd-signature-type">Snapshot</a>, outdir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, format<span class="tsd-signature-symbol">?: </span><a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Snapshot<span class="tsd-signature-symbol">(</span>entry<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_internal_types_d_.visualizer.snapshot.html" class="tsd-signature-type">Snapshot</a>, outdir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, format<span class="tsd-signature-symbol">?: </span><a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/7c846a9/src/lib/snapshot.ts#L111">lib/snapshot.ts:111</a></li>
+									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/a6e6c8b/src/lib/snapshot.ts#L135">lib/snapshot.ts:135</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -104,7 +104,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>entry: <a href="../interfaces/_types_types_d_.pt.snapshot.html" class="tsd-signature-type">Snapshot</a></h5>
+									<h5>entry: <a href="../interfaces/_types_internal_types_d_.visualizer.snapshot.html" class="tsd-signature-type">Snapshot</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>A single snapshot entry</p>
 									</div>
@@ -116,10 +116,11 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> format: <a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> format: <a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>resolves when all of the breakpoints for the snapshot entry have been snapshotted</p>
 						</li>
 					</ul>
 				</section>
@@ -127,13 +128,13 @@
 					<a name="formattoextension" class="tsd-anchor"></a>
 					<h3>format<wbr>ToExtension</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">format<wbr>ToExtension<span class="tsd-signature-symbol">(</span>format<span class="tsd-signature-symbol">: </span><a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"png"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"jpg"</span></li>
+						<li class="tsd-signature tsd-kind-icon">format<wbr>ToExtension<span class="tsd-signature-symbol">(</span>format<span class="tsd-signature-symbol">: </span><a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"png"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"jpg"</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/7c846a9/src/lib/snapshot.ts#L14">lib/snapshot.ts:14</a></li>
+									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/a6e6c8b/src/lib/snapshot.ts#L20">lib/snapshot.ts:20</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -144,8 +145,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>format: <a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a></h5>
+									<h5>format: <a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a></h5>
 									<div class="tsd-comment tsd-typography">
+										<p>image format</p>
 									</div>
 								</li>
 							</ul>
@@ -157,87 +159,89 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="runconfiguration" class="tsd-anchor"></a>
-					<h3>run<wbr>Configuration</h3>
+					<a name="runsnapshot" class="tsd-anchor"></a>
+					<h3>run<wbr>Snapshot</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">run<wbr>Configuration<span class="tsd-signature-symbol">(</span>configuration<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_types_d_.pt.configuration.html" class="tsd-signature-type">Configuration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">run<wbr>Snapshot<span class="tsd-signature-symbol">(</span>entryOrEntries<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_internal_types_d_.visualizer.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_internal_types_d_.visualizer.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol">[]</span>, outdir<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, format<span class="tsd-signature-symbol">?: </span><a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/7c846a9/src/lib/snapshot.ts#L79">lib/snapshot.ts:79</a></li>
+									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/a6e6c8b/src/lib/snapshot.ts#L103">lib/snapshot.ts:103</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p> Run using a snapshot and an output directory</p>
+								</div>
+								<dl class="tsd-comment-tags">
+									<dt>export</dt>
+									<dd></dd>
+								</dl>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>entryOrEntries: <a href="../interfaces/_types_internal_types_d_.visualizer.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_internal_types_d_.visualizer.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol">[]</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> outdir: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> format: <a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+					<a name="runsnapshotconfiguration" class="tsd-anchor"></a>
+					<h3>run<wbr>Snapshot<wbr>Configuration</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
+						<li class="tsd-signature tsd-kind-icon">run<wbr>Snapshot<wbr>Configuration<span class="tsd-signature-symbol">(</span>configuration<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_internal_types_d_.visualizer.configuration.html" class="tsd-signature-type">Configuration</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/a6e6c8b/src/lib/snapshot.ts#L84">lib/snapshot.ts:84</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
 									<p>Run using a configuration</p>
 								</div>
+								<dl class="tsd-comment-tags">
+									<dt>export</dt>
+									<dd></dd>
+								</dl>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>configuration: <a href="../interfaces/_types_types_d_.pt.configuration.html" class="tsd-signature-type">Configuration</a></h5>
+									<h5>configuration: <a href="../interfaces/_types_internal_types_d_.visualizer.configuration.html" class="tsd-signature-type">Configuration</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>configuration for executing snapshot functionality</p>
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
-					<a name="runsnapshot" class="tsd-anchor"></a>
-					<h3>run<wbr>Snapshot</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">run<wbr>Snapshot<span class="tsd-signature-symbol">(</span>entryOrEntries<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_types_d_.pt.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_types_d_.pt.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol">[]</span>, outdir<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span>, format<span class="tsd-signature-symbol">?: </span><a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/7c846a9/src/lib/snapshot.ts#L93">lib/snapshot.ts:93</a></li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Run using a snapshot and outdir</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>entryOrEntries: <a href="../interfaces/_types_types_d_.pt.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol"> | </span><a href="../interfaces/_types_types_d_.pt.snapshot.html" class="tsd-signature-type">Snapshot</a><span class="tsd-signature-symbol">[]</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>A single snapshot or multiple snapshot entires</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> outdir: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> =&nbsp;&quot;&quot;</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>the output directory for all snapshot entries</p>
-									</div>
-								</li>
-								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> format: <a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a></h5>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 					<a name="writesnapshot" class="tsd-anchor"></a>
 					<h3>write<wbr>Snapshot</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module">
-						<li class="tsd-signature tsd-kind-icon">write<wbr>Snapshot<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, breakpoint<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_types_d_.pt.breakpoint.html" class="tsd-signature-type">Breakpoint</a>, outdir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, format<span class="tsd-signature-symbol">?: </span><a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
+						<li class="tsd-signature tsd-kind-icon">write<wbr>Snapshot<span class="tsd-signature-symbol">(</span>url<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, name<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, breakpoint<span class="tsd-signature-symbol">: </span><a href="../interfaces/_types_internal_types_d_.visualizer.breakpoint.html" class="tsd-signature-type">Breakpoint</a>, outdir<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, format<span class="tsd-signature-symbol">?: </span><a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/7c846a9/src/lib/snapshot.ts#L37">lib/snapshot.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/nbperry/PuppeteerTester/blob/a6e6c8b/src/lib/snapshot.ts#L38">lib/snapshot.ts:38</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -260,7 +264,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>breakpoint: <a href="../interfaces/_types_types_d_.pt.breakpoint.html" class="tsd-signature-type">Breakpoint</a></h5>
+									<h5>breakpoint: <a href="../interfaces/_types_internal_types_d_.visualizer.breakpoint.html" class="tsd-signature-type">Breakpoint</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Object containing the resolutions for the browser viewport</p>
 									</div>
@@ -272,10 +276,10 @@
 									</div>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> format: <a href="_types_types_d_.pt.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol"> =&nbsp;DEFAULT_OUTPUT_FORMAT</span></h5>
+									<h5><span class="tsd-flag ts-flagDefault value">Default value</span> format: <a href="_types_internal_types_d_.visualizer.html#outputformat" class="tsd-signature-type">OutputFormat</a><span class="tsd-signature-symbol"> =&nbsp;DEFAULT_OUTPUT_FORMAT</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -292,6 +296,9 @@
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_bin_ptt_diff_.html">"bin/ptt-<wbr>diff"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
+						<a href="_bin_ptt_run_.html">"bin/ptt-<wbr>run"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
 						<a href="_bin_ptt_snapshot_.html">"bin/ptt-<wbr>snapshot"</a>
@@ -312,40 +319,34 @@
 						<a href="_lib_snapshot_.html">"lib/snapshot"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_run_diff_.html">"run-<wbr>diff"</a>
+						<a href="_types_external_interpret_d_.html">"types/external/interpret.d"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_run_snapshot_.html">"run-<wbr>snapshot"</a>
+						<a href="_types_external_pixelmatch_d_.html">"types/external/pixelmatch.d"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_types_guards_.html">"types/guards"</a>
+						<a href="_types_internal_guards_.html">"types/internal/guards"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="_types_interpret_d_.html">"types/interpret.d"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_types_pixelmatch_d_.html">"types/pixelmatch.d"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="_types_types_d_.html">"types/types.d"</a>
+						<a href="_types_internal_types_d_.html">"types/internal/types.d"</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_lib_snapshot_.html#executesnapshot" class="tsd-kind-icon">execute<wbr>Snapshot</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_lib_snapshot_.html#formattoextension" class="tsd-kind-icon">format<wbr>ToExtension</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
-						<a href="_lib_snapshot_.html#runconfiguration" class="tsd-kind-icon">run<wbr>Configuration</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-external-module">
 						<a href="_lib_snapshot_.html#runsnapshot" class="tsd-kind-icon">run<wbr>Snapshot</a>
 					</li>
 					<li class=" tsd-kind-function tsd-parent-kind-external-module">
+						<a href="_lib_snapshot_.html#runsnapshotconfiguration" class="tsd-kind-icon">run<wbr>Snapshot<wbr>Configuration</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-external-module tsd-is-not-exported">
 						<a href="_lib_snapshot_.html#writesnapshot" class="tsd-kind-icon">write<wbr>Snapshot</a>
 					</li>
 				</ul>

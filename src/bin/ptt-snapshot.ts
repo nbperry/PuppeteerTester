@@ -65,7 +65,7 @@ function run() {
     message.log('Running with a valid configuration.');
     runSnapshotConfiguration(configuration);
   } else {
-    const snapshot: PT.Snapshot = {
+    const snapshot: Visualizer.Snapshot = {
       breakpoints: [
         {
           height: Number(height),
