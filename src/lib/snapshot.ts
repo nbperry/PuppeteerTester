@@ -14,10 +14,10 @@ import * as message from './message';
 /**
  * Convert output format to output extension.
  *
- * @param {PT.OutputFormat} format image format
+ * @param {Visualizer.OutputFormat} format image format
  * @returns
  */
-function formatToExtension(format: PT.OutputFormat) {
+function formatToExtension(format: Visualizer.OutputFormat) {
   switch (format) {
     case 'jpeg':
       return 'jpg';
@@ -31,16 +31,16 @@ function formatToExtension(format: PT.OutputFormat) {
  *
  * @param {string} url Url to navigate to for taking a screenshot
  * @param {string} name the name of the image to save
- * @param {PT.Breakpoint} breakpoint Object containing the resolutions for the browser viewport
+ * @param {Visualizer.Breakpoint} breakpoint Object containing the resolutions for the browser viewport
  * @param {string} outdir Output directory
- * @param {PT.OutputFormat} [format=DEFAULT_OUTPUT_FORMAT] the image format to use
+ * @param {Visualizer.OutputFormat} [format=DEFAULT_OUTPUT_FORMAT] the image format to use
  */
 async function writeSnapshot(
   url: string,
   name: string,
-  breakpoint: PT.Breakpoint,
+  breakpoint: Visualizer.Breakpoint,
   outdir: string,
-  format: PT.OutputFormat = DEFAULT_OUTPUT_FORMAT
+  format: Visualizer.OutputFormat = DEFAULT_OUTPUT_FORMAT
 ): Promise<string> {
   const extension = formatToExtension(format);
   const browser = await puppeteer.launch({ headless: true });
@@ -79,10 +79,10 @@ async function writeSnapshot(
  * Run using a configuration
  *
  * @export
- * @param {PT.Configuration} configuration configuration for executing snapshot functionality
+ * @param {Visualizer.Configuration} configuration configuration for executing snapshot functionality
  */
 export async function runSnapshotConfiguration(
-  configuration: PT.Configuration
+  configuration: Visualizer.Configuration
 ): Promise<void | string[]> {
   return runSnapshot(
     configuration.snapshot,
@@ -95,15 +95,15 @@ export async function runSnapshotConfiguration(
  *  Run using a snapshot and an output directory
  *
  * @export
- * @param {(PT.Snapshot | PT.Snapshot[])} entryOrEntriesA single snapshot or multiple snapshot entries
+ * @param {(Visualizer.Snapshot | Visualizer.Snapshot[])} entryOrEntriesA single snapshot or multiple snapshot entries
  * @param {string} [outdir=''] the output directory for all snapshots
- * @param {PT.OutputFormat} [format] the image format to use
+ * @param {Visualizer.OutputFormat} [format] the image format to use
  *
  */
 export async function runSnapshot(
-  entryOrEntries: PT.Snapshot | PT.Snapshot[],
+  entryOrEntries: Visualizer.Snapshot | Visualizer.Snapshot[],
   outdir: string = '',
-  format?: PT.OutputFormat
+  format?: Visualizer.OutputFormat
 ): Promise<void | string[]> {
   if (isArray(entryOrEntries)) {
     const snapshotPromises: Array<Promise<string[]>> = [];
@@ -126,16 +126,16 @@ export async function runSnapshot(
 /**
  * Execute a snapshot entry
  *
- * @param {PT.Snapshot} entry A single snapshot entry
+ * @param {Visualizer.Snapshot} entry A single snapshot entry
  * @param {string} outdir the output directory for all snapshots for the given entry
- * @param {PT.OutputFormat} [format] the image format to use
+ * @param {Visualizer.OutputFormat} [format] the image format to use
  *
  * @returns {Promise<void>} resolves when all of the breakpoints for the snapshot entry have been snapshotted
  */
 async function executeSnapshot(
-  entry: PT.Snapshot,
+  entry: Visualizer.Snapshot,
   outdir: string,
-  format?: PT.OutputFormat
+  format?: Visualizer.OutputFormat
 ) {
   message.log('Output directory', outdir);
   if (!entry.breakpoints) {

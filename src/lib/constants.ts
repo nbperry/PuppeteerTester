@@ -1,1 +1,1 @@
-export const DEFAULT_OUTPUT_FORMAT: PT.OutputFormat = 'png';
+export const DEFAULT_OUTPUT_FORMAT: Visualizer.OutputFormat = 'png';

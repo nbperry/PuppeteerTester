@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>puppeteer-testing-tool</title>
+	<title>visualizer</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="index.html" class="title">puppeteer-testing-tool</a>
+					<a href="index.html" class="title">visualizer</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> puppeteer-testing-tool</h1>
+			<h1> visualizer</h1>
 		</div>
 	</div>
 </header>
@@ -62,27 +62,92 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="puppeteertestingtool-to-be-renamed-">PuppeteerTestingtool (To be renamed)</h1>
-				<p>This is a cli tool to enable the ability to quickly take visual snapshots of webpages. The  the purpose of this is to enable an automated method to perform regression testing on visual designs. </p>
+				<h1 id="visualizer">visualizer</h1>
+				<p>A visual regressing testing tool used for generating visual snapshots of webpages and perform visual differences.</p>
+				<p>This library is capable of being used for snapshotting, diffing, and a combination of these two.</p>
 				<h2 id="installation">Installation</h2>
-				<pre><code class="lang-sh">npm install {TO BE DETERMINED} -g
+				<p>Note: this library is not currently published on npm and as such the below installations will not work at the moment</p>
+				<p>To install globally as a CLI tool</p>
+				<pre><code class="lang-sh">npm install visualizer -g
+
+or
+
+yarn global add visualizer
 </code></pre>
-				<p>## </p>
 				<h2 id="usage">Usage</h2>
-				<p>{TO BE DETERMINED}</p>
-				<h3 id="snapshots">Snapshots</h3>
-				<ul>
-					<li><code>-c, --config &lt;config&gt;</code> A configuration file to perform snapshots with</li>
+				<h3 id="using-a-configuration-file">Using a configuration file</h3>
+				<p>This will perform only snapshots according to the configuration file</p>
+				<p><code>visualizer snapshot -c example.json</code></p>
+				<p>This will perform only diff comparisons according to the configuration file</p>
+				<p><code>visualizer diff -c example.json</code></p>
+				<p>This will perform snapshots then diff comparisons according to the configuration file</p>
+				<p><code>visualizer run -c example.json</code></p>
+				<h3 id="snapshots-cli">Snapshots cli</h3>
+				<pre><code>  <span class="hljs-attribute">Usage</span>: ptt-snapshot|pt snapshot [options]
+
+<span class="livecodeserver">  Create <span class="hljs-keyword">a</span> snapshot <span class="hljs-built_in">from</span> <span class="hljs-keyword">a</span> website <span class="hljs-built_in">URL</span>.</span>
+</code></pre><ul>
 					<li><code>-b, --breakpoint &lt;breakpoint&gt;</code> A name for a given width/height</li>
+					<li><code>-c, --config &lt;config&gt;</code> A configuration file to perform snapshots with</li>
 					<li><code>-h, --height &lt;height&gt;</code> Height of viewport</li>
 					<li><code>-w, --width &lt;width&gt;</code> Width of viewport</li>
-					<li><code>-n, --snapshotName &lt;snapshotName&gt;</code>  Name of the outputed snapshot</li>
+					<li><code>-n, --snapshotName &lt;snapshotName&gt;</code> Name of the outputed snapshot</li>
 					<li><code>-o, --outdir &lt;outdir&gt;</code> the directory in which the snapshot should be outputed</li>
 					<li><code>-u, --url &lt;url&gt;</code> Url of the website to snapshot</li>
+					<li><code>-h, --help</code> output help information</li>
 				</ul>
-				<h3 id="diffing">Diffing</h3>
 				<h4 id="examples">Examples</h4>
+				<p>perform a snapshot via cli
+				<code>visualizer snapshot -h 1080 -w 1920 -b AwesomePicture -n GoogleSnapshots -o Snapshots -u https://google.com</code></p>
+				<h3 id="diffing-cli">Diffing CLI</h3>
+				<pre><code><span class="hljs-attribute">Usage</span>: ptt-diff|pt diff [options] | &lt;oldFilePath&gt; &lt;newFilePath&gt; &lt;outPath&gt;
+
+<span class="livecodeserver">Create <span class="hljs-keyword">a</span> diff <span class="hljs-keyword">of</span> <span class="hljs-literal">two</span> images <span class="hljs-keyword">and</span> <span class="hljs-built_in">write</span> <span class="hljs-keyword">it</span> <span class="hljs-built_in">to</span> <span class="hljs-keyword">a</span> <span class="hljs-built_in">file</span>.  Inputs must be .png <span class="hljs-keyword">or</span> .jpg, <span class="hljs-keyword">and</span> output will be .png.</span>
+</code></pre><ul>
+					<li><code>-c, --config &lt;config&gt;</code> A configuration file to perform diff comparisons with</li>
+					<li><code>-h, --help</code> output help information</li>
+				</ul>
+				<h4 id="examples">Examples</h4>
+				<p>run via cli
+				<code>visualizer diff oldFile.png newerFile.png diff.png</code></p>
+				<h4 id="example-configuration-file">Example Configuration file</h4>
+				<p>TODO: There must be a better way to document this</p>
+				<p>example.json</p>
+				<pre><code>{
+    <span class="hljs-attr">"output"</span>: {
+        <span class="hljs-attr">"diffPath"</span>: <span class="hljs-string">"snapshots/diff"</span>,
+        <span class="hljs-attr">"format"</span>: <span class="hljs-string">"png"</span>,
+        <span class="hljs-attr">"snapshotPath"</span>: <span class="hljs-string">"snapshots/output"</span>
+    },
+    <span class="hljs-attr">"snapshot"</span>: [
+        {
+            <span class="hljs-attr">"breakpoints"</span>: [
+              { <span class="hljs-attr">"width"</span>: <span class="hljs-number">1920</span>, <span class="hljs-attr">"height"</span>: <span class="hljs-number">1080</span>, <span class="hljs-attr">"name"</span>: <span class="hljs-string">"BIG_SCREEN"</span> },
+              { <span class="hljs-attr">"width"</span>: <span class="hljs-number">1366</span>, <span class="hljs-attr">"height"</span>: <span class="hljs-number">768</span> },
+              { <span class="hljs-attr">"width"</span>: <span class="hljs-number">480</span>, <span class="hljs-attr">"height"</span>: <span class="hljs-number">640</span>, <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Smaller_screen"</span> }
+            ],
+            <span class="hljs-attr">"outputName"</span>: <span class="hljs-string">"hackernews"</span>,
+            <span class="hljs-attr">"url"</span>: <span class="hljs-string">"https://news.ycombinator.com/"</span>,
+            <span class="hljs-attr">"generateDiff"</span>: <span class="hljs-literal">true</span>
+        }
+    ]
+}
+</code></pre><p>Explanation of json structure</p>
+				<pre><code>ouput <span class="hljs-keyword">contains</span> information regarding <span class="hljs-keyword">the</span> tools output
+    diffPath is <span class="hljs-keyword">an</span> optional <span class="hljs-keyword">string</span> representing <span class="hljs-keyword">the</span> <span class="hljs-built_in">file</span> path <span class="hljs-keyword">for</span> storing diff comparisons
+    <span class="hljs-built_in">format</span> is <span class="hljs-keyword">an</span> optional <span class="hljs-keyword">string</span> representing <span class="hljs-keyword">the</span> image <span class="hljs-built_in">format</span> <span class="hljs-keyword">the</span> <span class="hljs-built_in">files</span> should be saved <span class="hljs-keyword">in</span> (currently only support <span class="hljs-string">"png"</span>)
+    snapshotPath is <span class="hljs-keyword">a</span> required <span class="hljs-keyword">string</span> representing <span class="hljs-keyword">the</span> <span class="hljs-built_in">file</span> path <span class="hljs-keyword">for</span> storing snapshots
+snapshot is <span class="hljs-keyword">a</span> required array containing information pertaining explaining what should be snapshotted
+    breakpoints is <span class="hljs-keyword">a</span> required array containing information different browser viewport configurations <span class="hljs-built_in">to</span> perform snapshots <span class="hljs-keyword">at</span>
+        width is <span class="hljs-keyword">a</span> required <span class="hljs-built_in">number</span> representing <span class="hljs-keyword">the</span> width <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> browser viewport
+        height is <span class="hljs-keyword">a</span> required <span class="hljs-built_in">number</span> representing <span class="hljs-keyword">the</span> height <span class="hljs-keyword">of</span> <span class="hljs-keyword">the</span> browser viewport
+        name is <span class="hljs-keyword">an</span> optional <span class="hljs-keyword">string</span> representing <span class="hljs-keyword">a</span> user friendly name <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> snapshot
+    ouputName is <span class="hljs-keyword">a</span> required <span class="hljs-keyword">string</span> representing <span class="hljs-keyword">the</span> <span class="hljs-built_in">directory</span> name <span class="hljs-keyword">for</span> all snapshots
+    url is <span class="hljs-keyword">a</span> required <span class="hljs-keyword">string</span> representing <span class="hljs-keyword">the</span> url that will be snapshoted
+    generateDiff is <span class="hljs-keyword">an</span> optional boolean representing <span class="hljs-keyword">if</span> <span class="hljs-keyword">a</span> diff should be performed <span class="hljs-keyword">for</span> <span class="hljs-keyword">the</span> given snapshot (default: <span class="hljs-literal">false</span>)
+</code></pre><p><a href="https://github.com/nbperry/PuppeteerTester/blob/5327bcbf6ef16b679ad70962740fc697e2d91795/src/types/internal/types.d.ts#L121">See Typescript Types for a more detailed information</a></p>
 				<h2 id="development">Development</h2>
+				<p>Developed using Node 8.9.1 (Current LTS version)</p>
 				<ol>
 					<li><p>Clone the repository</p>
 					</li>
@@ -119,6 +184,9 @@
 						<a href="modules/_bin_ptt_diff_.html">"bin/ptt-<wbr>diff"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
+						<a href="modules/_bin_ptt_run_.html">"bin/ptt-<wbr>run"</a>
+					</li>
+					<li class=" tsd-kind-external-module">
 						<a href="modules/_bin_ptt_snapshot_.html">"bin/ptt-<wbr>snapshot"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
@@ -137,22 +205,16 @@
 						<a href="modules/_lib_snapshot_.html">"lib/snapshot"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_run_diff_.html">"run-<wbr>diff"</a>
+						<a href="modules/_types_external_interpret_d_.html">"types/external/interpret.d"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_run_snapshot_.html">"run-<wbr>snapshot"</a>
+						<a href="modules/_types_external_pixelmatch_d_.html">"types/external/pixelmatch.d"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_types_guards_.html">"types/guards"</a>
+						<a href="modules/_types_internal_guards_.html">"types/internal/guards"</a>
 					</li>
 					<li class=" tsd-kind-external-module">
-						<a href="modules/_types_interpret_d_.html">"types/interpret.d"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_types_pixelmatch_d_.html">"types/pixelmatch.d"</a>
-					</li>
-					<li class=" tsd-kind-external-module">
-						<a href="modules/_types_types_d_.html">"types/types.d"</a>
+						<a href="modules/_types_internal_types_d_.html">"types/internal/types.d"</a>
 					</li>
 				</ul>
 			</nav>

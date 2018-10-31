@@ -1,7 +1,8 @@
 {
-  "name": "puppeteer-testing-tool",
+  "name": "visualizer",
   "version": "0.0.1",
-  "description": "Tool used for generating snapshots of a website as a part of CI/CD process",
+  "description":
+    "Tool used for generating snapshots of a website as a part of CI/CD process",
   "main": "dist/bin/ptt.js",
   "bin": "./bin/ptt",
   "author": {
@@ -18,34 +19,33 @@
   "private": true,
   "scripts": {
     "start": "concurrently \"yarn run watch\" \"yarn run dev\"",
-    "cli:snapshot": "node dist/bin/ptt.js snapshot -c tests/mock-config/example-config.json",
-    "cli:diff": "node dist/bin/ptt.js diff -c tests/mock-config/example-config.json",
+    "cli:snapshot":
+      "node dist/bin/ptt.js snapshot -c tests/mock-config/example-config.json",
+    "cli:diff":
+      "node dist/bin/ptt.js diff -c tests/mock-config/example-config.json",
     "cli": "node dist/bin/ptt.js run -c tests/mock-config/example-config.json",
     "build": "tsc",
     "watch": "tsc --watch",
-    "dev": "wait-on dist/bin/ptt.js && nodemon dist/bin/ptt.js run -c tests/mock-config/example-config.json",
+    "dev":
+      "wait-on dist/bin/ptt.js && nodemon dist/bin/ptt.js run -c tests/mock-config/example-config.json",
     "pretty": "prettier --write \"src/**/*.ts\"",
-    "lint": "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
+    "lint":
+      "tslint -c ./tslint.json --project ./tsconfig.json -e \"src/**/*.d.ts\"",
     "test": "jest -i --forceExit",
     "precommit": "lint-staged && yarn run lint && yarn test",
-    "docs:build": "typedoc --mode modules --excludeExternals --includeDeclarations --out docs/ src/",
+    "docs:build":
+      "typedoc --mode modules --excludeExternals --includeDeclarations --out docs/ src/",
     "docs:serve": "serve docs/"
   },
   "lint-staged": {
-    "*.ts": [
-      "yarn run pretty",
-      "git add"
-    ]
+    "*.ts": ["yarn run pretty", "git add"]
   },
   "jest": {
     "transform": {
       "^.+\\.tsx?$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
     "testRegex": "(/tests/.*|(\\.|/)(test|spec))\\.(test.js?|test.ts?)$",
-    "moduleFileExtensions": [
-      "ts",
-      "js"
-    ]
+    "moduleFileExtensions": ["ts", "js"]
   },
   "dependencies": {
     "chalk": "^2.3.0",

@@ -1,6 +1,6 @@
 // Internal Type Definitions
 
-declare namespace PT {
+declare namespace Visualizer {
   /**
    * A viewport configuration
    *

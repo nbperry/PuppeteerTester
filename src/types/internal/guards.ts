@@ -5,9 +5,9 @@ import * as message from '../../lib/message';
  *
  * @export
  * @param {*} obj
- * @returns {obj is PT.Breakpoint}
+ * @returns {obj is Visualizer.Breakpoint}
  */
-export function isBreakpoint(obj: any): obj is PT.Breakpoint {
+export function isBreakpoint(obj: any): obj is Visualizer.Breakpoint {
   // message.log(`Guards.isBreakpoint - typeof obj === 'object': ${typeof obj === 'object'}`);
   // message.log(`Guards.isBreakpoint - obj.height === 'number': ${obj.height === 'number'}`);
   // message.log(`Guards.isBreakpoint - typeof obj.width === 'number': ${typeof obj.width === 'number'}`);
@@ -26,9 +26,9 @@ export function isBreakpoint(obj: any): obj is PT.Breakpoint {
  *
  * @export
  * @param {*} obj
- * @returns {obj is PT.Output}
+ * @returns {obj is Visualizer.Output}
  */
-export function isOutput(obj: any): obj is PT.Output {
+export function isOutput(obj: any): obj is Visualizer.Output {
   // message.log(`Guards.isOutput - typeof obj === 'object': ${typeof obj === 'object'}`);
   // message.log(`Guards.isOutput - (!obj.diffPath || typeof obj.diffPath === 'string'): ${(!obj.diffPath || typeof obj.diffPath === 'string')}`);
   // message.log(`Guards.isOutput - (!obj.format || typeof obj.format === 'string') : ${ (!obj.format || typeof obj.format === 'string') }`);
@@ -47,9 +47,9 @@ export function isOutput(obj: any): obj is PT.Output {
  *
  * @export
  * @param {*} obj
- * @returns {obj is PT.Snapshot}
+ * @returns {obj is Visualizer.Snapshot}
  */
-export function isSnapshot(obj: any): obj is PT.Snapshot {
+export function isSnapshot(obj: any): obj is Visualizer.Snapshot {
   // message.log(`Guards.isSnapshot - typeof obj === 'object': ${typeof obj === 'object'}`);
   // message.log(`Guards.isSnapshot - typeof obj.outputName === 'string': ${typeof obj.outputName === 'string'}`);
   // message.log(`Guards.isSnapshot - Array.isArray(obj.breakpoints) : ${Array.isArray(obj.breakpoints)}`);
@@ -70,9 +70,9 @@ export function isSnapshot(obj: any): obj is PT.Snapshot {
  *
  * @export
  * @param {*} obj
- * @returns {obj is PT.Snapshot[]}
+ * @returns {obj is Visualizer.Snapshot[]}
  */
-export function isArrayOfSnapshot(obj: any): obj is PT.Snapshot[] {
+export function isArrayOfSnapshot(obj: any): obj is Visualizer.Snapshot[] {
   return (
     Array.isArray(obj) && obj.every((snapshot: any) => isSnapshot(snapshot))
   );
@@ -83,9 +83,9 @@ export function isArrayOfSnapshot(obj: any): obj is PT.Snapshot[] {
  *
  * @export
  * @param {*} obj
- * @returns {obj is PT.Configuration}
+ * @returns {obj is Visualizer.Configuration}
  */
-export function isConfiguration(obj: any): obj is PT.Configuration {
+export function isConfiguration(obj: any): obj is Visualizer.Configuration {
   message.log(
     `does the configuration object contain output information: ${isOutput(
       obj.output
