@@ -4,6 +4,8 @@ A visual regressing testing tool used for generating visual snapshots of webpage
 
 This library is capable of being used for snapshotting, diffing, and a combination of these two.
 
+### Warning: This project is not actively maintained
+
 ## Installation
 
 Note: this library is not currently published on npm and as such the below installations will not work at the moment
