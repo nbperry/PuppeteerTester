@@ -65,9 +65,9 @@
   version "8.0.47"
   resolved "https://registry.npmjs.org/@types/node/-/node-8.0.47.tgz#968e596f91acd59069054558a00708c445ca30c2"
 
-"@types/pngjs@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@types/pngjs/-/pngjs-3.3.0.tgz#1bd2d6d28bc89750f3deb07f584c33f5910369ea"
+"@types/pngjs@^3.4.1":
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/@types/pngjs/-/pngjs-3.4.1.tgz#2da41c25e4eb4c4e4c703cb306f7561311ac3a0c"
   dependencies:
     "@types/node" "*"
 
