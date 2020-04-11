@@ -105,9 +105,9 @@
   dependencies:
     "@types/node" "*"
 
-"@types/puppeteer@^0.12.1":
-  version "0.12.1"
-  resolved "https://registry.npmjs.org/@types/puppeteer/-/puppeteer-0.12.1.tgz#a2b3f0e7b624faad2d5948bda07fccc859633415"
+"@types/puppeteer@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@types/puppeteer/-/puppeteer-2.0.1.tgz#83a1d7f0a1c2e0edbbb488b4d8fb54b14ec9d455"
   dependencies:
     "@types/node" "*"
 
