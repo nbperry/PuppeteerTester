@@ -51,7 +51,7 @@
     "chalk": "^2.3.0",
     "commander": "^2.11.0",
     "date-fns": "^1.29.0",
-    "interpret": "^1.0.4",
+    "interpret": "^2.2.0",
     "jpeg-js": "^0.4.0",
     "mkdirp": "^0.5.1",
     "pixelmatch": "^4.0.2",
