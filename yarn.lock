@@ -128,9 +128,9 @@
   version "14.14.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-14.14.13.tgz#9e425079799322113ae8477297ae6ef51b8e0cdf"
 
-"@types/pngjs@^3.3.0":
-  version "3.3.0"
-  resolved "https://registry.yarnpkg.com/@types/pngjs/-/pngjs-3.3.0.tgz#1bd2d6d28bc89750f3deb07f584c33f5910369ea"
+"@types/pngjs@^3.4.2":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/@types/pngjs/-/pngjs-3.4.2.tgz#8dc49b45fbcf18a5873179e3664f049388e39ecf"
   dependencies:
     "@types/node" "*"
 

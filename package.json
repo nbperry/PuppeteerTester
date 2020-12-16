@@ -64,7 +64,7 @@
     "@types/jpeg-js": "^0.3.0",
     "@types/mkdirp": "^1.0.0",
     "@types/node": "^14.14.13",
-    "@types/pngjs": "^3.3.0",
+    "@types/pngjs": "^3.4.2",
     "@types/puppeteer": "^5.4.2",
     "@types/rimraf": "^3.0.0",
     "concurrently": "^5.3.0",
