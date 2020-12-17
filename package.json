@@ -73,7 +73,7 @@
     "lint-staged": "^4.3.0",
     "nodemon": "^1.12.1",
     "prettier": "^2.2.1",
-    "rimraf": "^2.6.2",
+    "rimraf": "^3.0.2",
     "serve": "^11.3.2",
     "ts-jest": "^21.1.4",
     "ts-node": "^9.1.1",
