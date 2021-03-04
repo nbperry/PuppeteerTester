@@ -90,11 +90,11 @@
     jest-diff "^26.0.0"
     pretty-format "^26.0.0"
 
-"@types/jpeg-js@^0.3.0":
-  version "0.3.0"
-  resolved "https://registry.yarnpkg.com/@types/jpeg-js/-/jpeg-js-0.3.0.tgz#5971f0aa50900194e9565711c265c10027385e89"
+"@types/jpeg-js@^0.3.7":
+  version "0.3.7"
+  resolved "https://registry.yarnpkg.com/@types/jpeg-js/-/jpeg-js-0.3.7.tgz#efe18ac0078c09bae5fa1d58941b53799e7bbf1c"
   dependencies:
-    "@types/node" "*"
+    jpeg-js "*"
 
 "@types/minimatch@*":
   version "3.0.1"
@@ -2169,9 +2169,9 @@ joi@^17.1.1:
     "@sideway/formula" "^3.0.0"
     "@sideway/pinpoint" "^2.0.0"
 
-jpeg-js@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.4.0.tgz#39adab7245b6d11e918ba5d4b49263ff2fc6a2f9"
+jpeg-js@*, jpeg-js@^0.4.0:
+  version "0.4.2"
+  resolved "https://registry.yarnpkg.com/jpeg-js/-/jpeg-js-0.4.2.tgz#8b345b1ae4abde64c2da2fe67ea216a114ac279d"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
