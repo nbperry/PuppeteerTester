@@ -60,7 +60,7 @@
   },
   "devDependencies": {
     "@types/commander": "^2.11.0",
-    "@types/jest": "^26.0.19",
+    "@types/jest": "^26.0.20",
     "@types/jpeg-js": "^0.3.7",
     "@types/mkdirp": "^1.0.0",
     "@types/node": "^14.14.14",
