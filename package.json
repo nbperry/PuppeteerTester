@@ -55,7 +55,7 @@
     "jpeg-js": "^0.4.0",
     "mkdirp": "^1.0.4",
     "pixelmatch": "^4.0.2",
-    "pngjs": "^4.0.0",
+    "pngjs": "^6.0.0",
     "puppeteer": "^1.13.0"
   },
   "devDependencies": {
