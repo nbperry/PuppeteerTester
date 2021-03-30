@@ -54,7 +54,7 @@
     "interpret": "^2.2.0",
     "jpeg-js": "^0.4.3",
     "mkdirp": "^1.0.4",
-    "pixelmatch": "^4.0.2",
+    "pixelmatch": "^5.2.1",
     "pngjs": "^6.0.0",
     "puppeteer": "^1.13.0"
   },
