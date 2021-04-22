@@ -48,7 +48,7 @@
     "moduleFileExtensions": ["ts", "js"]
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "commander": "^7.2.0",
     "date-fns": "^2.19.0",
     "interpret": "^2.2.0",
