@@ -1,0 +1,69 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@types/node"
+    versions:
+    - 14.14.39
+    - 14.14.41
+    - 15.0.0
+  - dependency-name: date-fns
+    versions:
+    - 2.16.1
+    - 2.17.0
+    - 2.20.0
+    - 2.20.1
+    - 2.20.2
+    - 2.20.3
+  - dependency-name: concurrently
+    versions:
+    - 6.0.1
+  - dependency-name: typedoc
+    versions:
+    - 0.20.29
+    - 0.20.30
+    - 0.20.32
+    - 0.20.33
+    - 0.20.35
+  - dependency-name: "@types/jest"
+    versions:
+    - 26.0.20
+    - 26.0.21
+  - dependency-name: wait-on
+    versions:
+    - 5.2.1
+  - dependency-name: commander
+    versions:
+    - 7.1.0
+  - dependency-name: jpeg-js
+    versions:
+    - 0.4.3
+  - dependency-name: "@types/commander"
+    versions:
+    - 2.12.2
+  - dependency-name: husky
+    versions:
+    - 4.3.8
+    - 5.0.9
+    - 5.1.0
+    - 5.1.1
+    - 5.1.2
+  - dependency-name: puppeteer
+    versions:
+    - 5.5.0
+    - 6.0.0
+    - 7.0.0
+    - 7.0.1
+    - 7.0.4
+    - 7.1.0
+  - dependency-name: typescript
+    versions:
+    - 4.0.5
+    - 4.0.6
+  - dependency-name: lint-staged
+    versions:
+    - 10.5.3
