@@ -63,7 +63,7 @@
     "@types/jest": "^26.0.22",
     "@types/jpeg-js": "^0.3.7",
     "@types/mkdirp": "^1.0.1",
-    "@types/node": "^14.14.37",
+    "@types/node": "^15.12.1",
     "@types/pngjs": "^6.0.0",
     "@types/puppeteer": "^5.4.3",
     "@types/rimraf": "^3.0.0",
